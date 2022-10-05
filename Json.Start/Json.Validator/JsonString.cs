@@ -14,7 +14,7 @@ namespace Json
             return input != null
                 && !ContainsControlCharacters(input)
                 && IsDoubleQuoted(input)
-                && Test(input);
+                && !ContainsUnrecognizedEscapedChar(input);
         }
 
         private static bool IsDoubleQuoted(string input)
@@ -27,7 +27,7 @@ namespace Json
             return input.Any(char.IsControl);
         }
 
-        private static bool Test(string input)
+        private static bool ContainsUnrecognizedEscapedChar(string input)
         {
             try
             {
@@ -35,10 +35,10 @@ namespace Json
             }
             catch (System.ArgumentException x)
             {
-                return false;
+                return true;
             }
 
-            return true;
+            return false;
         }
     }
 }
