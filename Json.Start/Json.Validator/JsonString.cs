@@ -9,7 +9,7 @@ namespace Json
 
         public static bool IsJsonString(string input)
         {
-            return IsDoubleQuoted(input);
+            return input != null && IsDoubleQuoted(input);
         }
 
         private static bool IsDoubleQuoted(string input)
