@@ -8,18 +8,26 @@ namespace Json
     public static class JsonString
     {
         const int MinLengt = 2;
+        const int SecondToLast = 2;
 
         public static bool IsJsonString(string input)
         {
             return input != null
                 && !ContainsControlCharacters(input)
-                && IsDoubleQuoted(input)
-                && !ContainsUnrecognizedEscapedChar(input);
+                && HasValidFirstAndLastCharacters(input)
+                && !ContainsUnrecognizedEscapedChar(input)
+                ;
         }
 
-        private static bool IsDoubleQuoted(string input)
+        private static bool IsEndingInReverseSolidus(string input)
         {
-            return input.Length >= MinLengt && input[0] == '"' && input[^1] == '"';
+            return input[input.Length - SecondToLast] == '\\';
+        }
+
+        private static bool HasValidFirstAndLastCharacters(string input)
+        {
+            return input.Length >= MinLengt && input[0] == '"' && input[^1] == '"'
+                && !IsEndingInReverseSolidus(input);
         }
 
         private static bool ContainsControlCharacters(string input)
