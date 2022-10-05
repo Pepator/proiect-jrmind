@@ -114,8 +114,8 @@ namespace Json.Facts
             Assert.True(IsJsonString(Quoted(@"a \u26Be b")));
         }
 
-        [Fact(Skip = "Remove this Skip as you implement")]
-        public void DoesNotContainUnrecognizedExcapceCharacters()
+        [Fact()]
+        public void DoesNotContainUnrecognizedEscapedCharacters()
         {
             Assert.False(IsJsonString(Quoted(@"a\x")));
         }
