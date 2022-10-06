@@ -1,7 +1,5 @@
 using System;
 using System.Linq;
-using System.Text.RegularExpressions;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Json
 {
@@ -37,16 +35,56 @@ namespace Json
 
         private static bool ContainsUnrecognizedEscapedChar(string input)
         {
-            try
+            const int StartOfHexNumber = 2;
+            const int EndOfHexNumber = 3;
+            char[] escapedChars = { 'a', 'b', 'f', 'n', 'r', 'v', 't', '\'', '\"', '?', '\\', '/' };
+            int i = 0;
+
+            while (i < input.Length)
             {
-                Regex.Unescape(input);
-            }
-            catch (System.ArgumentException x)
-            {
-                return true;
+                if (input[i] == '\\' && i < input.Length - 1 && input[i + 1] == ' ')
+                {
+                    i++;
+                    continue;
+                }
+
+                if (input[i] == '\\' && !escapedChars.Contains(input[i + 1]))
+                {
+                    if (input[i + 1] == 'u' && ValidHexNumber(input, i + StartOfHexNumber))
+                    {
+                        i = i + StartOfHexNumber + EndOfHexNumber;
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+
+                i++;
             }
 
             return false;
+        }
+
+        private static bool ValidHexNumber(string input, int index)
+        {
+            const int HexadecimalLenght = 4;
+            char[] hexNumber = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'A', 'B', 'C', 'D', 'E', 'F' };
+
+            if (index + HexadecimalLenght > input.Length - 1)
+            {
+                return false;
+            }
+
+            for (int i = index; i < index + HexadecimalLenght; i++)
+            {
+                if (!hexNumber.Contains(input[i]))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }
