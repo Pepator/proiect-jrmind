@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 
 namespace Json
 {
@@ -30,7 +29,15 @@ namespace Json
 
         private static bool ContainsControlCharacters(string input)
         {
-            return input.Any(char.IsControl);
+            foreach (char x in input)
+            {
+                if (char.IsControl(x))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private static bool ContainsUnrecognizedEscapedChar(string input)
@@ -48,7 +55,7 @@ namespace Json
                     continue;
                 }
 
-                if (input[i] == '\\' && !escapedChars.Contains(input[i + 1]))
+                if (input[i] == '\\' && !ContainsChar(escapedChars, input[i + 1]))
                 {
                     if (input[i + 1] == 'u' && ValidHexNumber(input, i + StartOfHexNumber))
                     {
@@ -78,13 +85,26 @@ namespace Json
 
             for (int i = index; i < index + HexadecimalLenght; i++)
             {
-                if (!hexNumber.Contains(input[i]))
+                if (!ContainsChar(hexNumber, input[i]))
                 {
                     return false;
                 }
             }
 
             return true;
+        }
+
+        private static bool ContainsChar(char[] charList, char serchChar)
+        {
+            foreach (char x in charList)
+            {
+                if (x == serchChar)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }
