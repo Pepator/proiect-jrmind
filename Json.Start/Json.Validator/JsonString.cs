@@ -85,7 +85,7 @@ namespace Json
         private static bool ValidHexNumber(string input, int index)
         {
             const int HexadecimalLenght = 4;
-            const string HexNumber = "0123456789abcdefABCDEF";
+            input = input.ToLower();
 
             if (index + HexadecimalLenght > input.Length - 1)
             {
@@ -94,7 +94,8 @@ namespace Json
 
             for (int i = index; i < index + HexadecimalLenght; i++)
             {
-                if (!HexNumber.Contains(input[i]))
+                if (!((input[i] >= '0' && input[i] <= '9')
+                    || (input[i] >= 'a' && input[i] <= 'f')))
                 {
                     return false;
                 }
