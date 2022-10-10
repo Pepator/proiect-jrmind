@@ -48,7 +48,7 @@ namespace Json
         {
             const int StartOfHexNumber = 2;
             const int EndOfHexNumber = 4;
-            const string EscapedCharacter = "abfnrvt\'\"?\\/ ";
+            const string EscapedCharacter = "bfnrt\'\"?\\/ ";
             int i = 0;
 
             while (i < input.Length)
