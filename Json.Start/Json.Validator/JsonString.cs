@@ -82,14 +82,19 @@ namespace Json
 
             for (int i = index; i < index + HexadecimalLenght; i++)
             {
-                if (!((input[i] >= '0' && input[i] <= '9')
-                    || (input[i] >= 'a' && input[i] <= 'f')))
+                if (!IsHex(input[i]))
                 {
                     return false;
                 }
             }
 
             return true;
+        }
+
+        private static bool IsHex(char ch)
+        {
+            return (ch >= '0' && ch <= '9')
+                || (ch >= 'a' && ch <= 'f');
         }
     }
 }
