@@ -6,6 +6,8 @@ namespace Json
     {
         const int MinLenght = 2;
         const int SecondToLast = 2;
+        const int JumpAfterBackslash = 2;
+        const string JsonContrlCharacters = "\b\f\n\r\t";
 
         public static bool IsJsonString(string input)
         {
@@ -33,9 +35,19 @@ namespace Json
 
         private static bool ContainsControlCharacters(string input)
         {
-            foreach (char x in input)
+            for (int i = 1; i < input.Length - 1; i++)
             {
-                if (char.IsControl(x))
+                if (JsonContrlCharacters.Contains(input[i]))
+                {
+                    return true;
+                }
+
+                if (input[i] == '\"' && input[i - 1] != '\\')
+                {
+                    return true;
+                }
+
+                if (input[i] == '/' && input[i - 1] != '\\')
                 {
                     return true;
                 }
