@@ -33,10 +33,9 @@ namespace Json
 
         private static bool ContainsControlCharacters(string input)
         {
-            const int LastJsonControlChar = 31;
-            for (int i = 1; i < input.Length - 1; i++)
+            foreach (char x in input)
             {
-                if ((int)input[i] <= LastJsonControlChar)
+                if (x < ' ')
                 {
                     return true;
                 }
