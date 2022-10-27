@@ -47,21 +47,21 @@ namespace Json
         private static bool ContainsUnrecognizedEscapedChar(string input)
         {
             const int StartOfHexNumber = 2;
-            const int EndOfHexNumber = 4;
-            const string EscapedCharacter = "bfnrt\'\"?\\/ ";
+            const int EndOfEscapedCharacter = 2;
+            const string EscapedCharacter = "bfnrt\'\"?\\/";
             int i = 0;
 
             while (i < input.Length)
             {
-                if (input[i] == '\\' && !EscapedCharacter.Contains(input[i + 1]))
+                if (input[i] == '\\')
                 {
-                    if (input[i + 1] == 'u' && ValidHexNumber(input, i + StartOfHexNumber))
+                    if (!EscapedCharacter.Contains(input[i + 1]) && !(input[i + 1] == 'u' && ValidHexNumber(input, i + StartOfHexNumber)))
                     {
-                        i = i + StartOfHexNumber + EndOfHexNumber;
-                        continue;
+                        return true;
                     }
 
-                    return true;
+                    i = i + EndOfEscapedCharacter;
+                    continue;
                 }
 
                 i++;
