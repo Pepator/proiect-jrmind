@@ -17,7 +17,7 @@ namespace Json
                 return false;
             }
 
-            if (input[input.Length - 1] == '.' || ContainsTwoFractionParts(input) > 1)
+            if (input[input.Length - 1] == '.' || CountFractionParts(input) > 1 || CountExponents(input) > 1)
             {
                 return false;
             }
@@ -30,7 +30,7 @@ namespace Json
             return true;
         }
 
-        static int ContainsTwoFractionParts(string input)
+        static int CountFractionParts(string input)
         {
             int numberOfFractionParts = 0;
             for (int i = 0; i < input.Length; i++)
@@ -42,6 +42,20 @@ namespace Json
             }
 
             return numberOfFractionParts;
+        }
+
+        static int CountExponents(string input)
+        {
+            int numberOfExponents = 0;
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (input[i] == 'e' || input[i] == 'E')
+                {
+                    numberOfExponents++;
+                }
+            }
+
+            return numberOfExponents;
         }
 
         static bool ContainsLetters(string input)
