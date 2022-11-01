@@ -6,11 +6,18 @@ namespace Json
     {
         public static bool IsJsonNumber(string input)
         {
-            return IsValid(input)
-                && !ContainsLetters(input);
+            return IsValidNumber(input)
+                && !ContainsLetters(input)
+                && IsValidExponent(input);
         }
 
-        static bool IsValid(string input)
+        static bool IsValidExponent(string input)
+        {
+            input = input.ToLower();
+            return input[input.Length - 1] != 'e' && input[input.Length - 1] != '+' && input[input.Length - 1] != '-';
+        }
+
+        static bool IsValidNumber(string input)
         {
             if (string.IsNullOrEmpty(input))
             {
