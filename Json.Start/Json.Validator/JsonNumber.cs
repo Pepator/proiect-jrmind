@@ -6,7 +6,12 @@ namespace Json
     {
         public static bool IsJsonNumber(string input)
         {
-            throw new NotImplementedException();
+            return IsZero(input);
+        }
+
+        static bool IsZero(string input)
+        {
+            return input == "0";
         }
     }
 }
