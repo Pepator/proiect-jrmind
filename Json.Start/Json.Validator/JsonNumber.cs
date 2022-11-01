@@ -46,9 +46,10 @@ namespace Json
 
         static bool ContainsLetters(string input)
         {
+            input = input.ToLower();
             for (int i = 0; i < input.Length; i++)
             {
-                if ((input[i] >= 'a' && input[i] <= 'z') && (input[i] <= 'A' || input[i] >= 'Z'))
+                if ((input[i] >= 'a' && input[i] <= 'd') || (input[i] >= 'f' && input[i] <= 'z'))
                 {
                     return true;
                 }
