@@ -14,7 +14,21 @@ namespace Json
         static bool IsValidExponent(string input)
         {
             input = input.ToLower();
-            return input[input.Length - 1] != 'e' && input[input.Length - 1] != '+' && input[input.Length - 1] != '-';
+            if (input[input.Length - 1] == 'e' || input[input.Length - 1] == '+' || input[input.Length - 1] == '-')
+            {
+                return false;
+            }
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (input[i] == 'e')
+                {
+                    input = input.Substring(i + 1);
+                    return CountFractionParts(input) <= 0;
+                }
+            }
+
+            return true;
         }
 
         static bool IsValidNumber(string input)
