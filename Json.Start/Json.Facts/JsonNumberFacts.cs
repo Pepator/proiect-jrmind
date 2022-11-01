@@ -18,31 +18,31 @@ namespace Json.Facts
             Assert.False(IsJsonNumber("a"));
         }
 
-        [Fact(Skip = "Remove this Skip as you implement")]
+        [Fact]
         public void CanHaveASingleDigit()
         {
             Assert.True(IsJsonNumber("7"));
         }
 
-        [Fact(Skip = "Remove this Skip as you implement")]
+        [Fact]
         public void CanHaveMultipleDigits()
         {
             Assert.True(IsJsonNumber("70"));
         }
 
-        [Fact(Skip = "Remove this Skip as you implement")]
+        [Fact]
         public void IsNotNull()
         {
             Assert.False(IsJsonNumber(null));
         }
 
-        [Fact(Skip = "Remove this Skip as you implement")]
+        [Fact]
         public void IsNotAnEmptyString()
         {
             Assert.False(IsJsonNumber(string.Empty));
         }
 
-        [Fact(Skip = "Remove this Skip as you implement")]
+        [Fact]
         public void DoesNotStartWithZero()
         {
             Assert.False(IsJsonNumber("07"));

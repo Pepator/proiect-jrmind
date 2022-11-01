@@ -6,20 +6,30 @@ namespace Json
     {
         public static bool IsJsonNumber(string input)
         {
-            return IsZero(input)
+            return IsValid(input)
                 && !ContainsLetters(input);
         }
 
-        static bool IsZero(string input)
+        static bool IsValid(string input)
         {
-            return input == "0";
+            if (string.IsNullOrEmpty(input))
+            {
+                return false;
+            }
+
+            if (input.Length > 1 && input[0] == '0')
+            {
+                return false;
+            }
+
+            return true;
         }
 
         static bool ContainsLetters(string input)
         {
             for (int i = 0; i < input.Length; i++)
             {
-                if ((input[i] > 'a' && input[i] < 'z') && (input[i] < 'A' || input[i] > 'Z'))
+                if ((input[i] >= 'a' && input[i] <= 'z') && (input[i] <= 'A' || input[i] >= 'Z'))
                 {
                     return true;
                 }
