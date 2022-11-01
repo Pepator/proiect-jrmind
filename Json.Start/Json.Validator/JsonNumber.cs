@@ -17,7 +17,7 @@ namespace Json
                 return false;
             }
 
-            if (input[input.Length - 1] == '.')
+            if (input[input.Length - 1] == '.' || ContainsTwoFractionParts(input) > 1)
             {
                 return false;
             }
@@ -28,6 +28,20 @@ namespace Json
             }
 
             return true;
+        }
+
+        static int ContainsTwoFractionParts(string input)
+        {
+            int numberOfFractionParts = 0;
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (input[i] == '.')
+                {
+                    numberOfFractionParts++;
+                }
+            }
+
+            return numberOfFractionParts;
         }
 
         static bool ContainsLetters(string input)
