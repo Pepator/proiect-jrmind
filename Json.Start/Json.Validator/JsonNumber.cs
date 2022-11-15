@@ -6,44 +6,90 @@ namespace Json
     {
         public static bool IsJsonNumber(string input)
         {
-            return IsValidNumber(input)
-                && !ContainsLetters(input)
-                && IsValidExponent(input);
+            return !string.IsNullOrEmpty(input) && SplitInput(input);
         }
 
-        static bool IsValidExponent(string input)
+        static bool SplitInput(string input)
         {
-            input = input.ToLower();
-            if (input[input.Length - 1] == 'e' || input[input.Length - 1] == '+' || input[input.Length - 1] == '-')
+            var indexOfDot = input.IndexOf('.');
+            var indexOfExponent = input.IndexOfAny("eE".ToCharArray());
+
+            return IsInteger(Integer(input, indexOfDot, indexOfExponent))
+                     && IsFraction(Fraction(input, indexOfDot, indexOfExponent))
+                     && IsExponent(Exponent(input, indexOfExponent));
+        }
+
+        static string Integer(string input, int indexOfDot, int indexOfExponent)
+        {
+            if (indexOfDot == -1 && indexOfExponent != -1)
+            {
+                return input[..indexOfExponent];
+            }
+            else if (indexOfDot == -1 && indexOfExponent == -1)
+            {
+                return input;
+            }
+
+            return input[..indexOfDot];
+        }
+
+        static bool IsInteger(string input)
+        {
+            if (input.Length > 1 && input[0] == '0')
             {
                 return false;
             }
 
-            for (int i = 0; i < input.Length; i++)
+            if (input[0] != '-' && input[0] != '+' && (input[0] < '0' || input[0] > '9'))
             {
-                if (input[i] == 'e')
+                return false;
+            }
+
+            for (int i = 1; i < input.Length; i++)
+            {
+                if (input[i] < '0' || input[i] > '9')
                 {
-                    input = input.Substring(i + 1);
-                    return CountFractionParts(input) <= 0;
+                    return false;
                 }
             }
 
             return true;
         }
 
-        static bool IsValidNumber(string input)
+        static bool IsExponent(string input)
         {
-            if (string.IsNullOrEmpty(input))
+            if (input == null)
             {
                 return false;
             }
 
-            if (input[input.Length - 1] == '.' || CountFractionParts(input) > 1 || CountExponents(input) > 1)
+            if (!AcceptableFirsAndLastCharacter(input))
             {
                 return false;
             }
 
-            if (input.Length > 1 && input[0] == '0' && input[1] != '.')
+            for (int i = 1; i < input.Length; i++)
+            {
+                if (input[i] < '0' || input[i] > '9')
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        static bool AcceptableFirsAndLastCharacter(string input)
+        {
+            if (input.Length == 0)
+            {
+                return true;
+            }
+            else if (input[0] != '-' && input[0] != '+' && (input[0] < '0' || input[0] > '9'))
+            {
+                return false;
+            }
+            else if (input[input.Length - 1] < '0' || input[input.Length - 1] > '9')
             {
                 return false;
             }
@@ -51,46 +97,60 @@ namespace Json
             return true;
         }
 
-        static int CountFractionParts(string input)
+        static string Fraction(string input, int indexOfDot, int indexOfExponent)
         {
-            int numberOfFractionParts = 0;
-            for (int i = 0; i < input.Length; i++)
+            if (indexOfDot == input.Length - 1)
             {
-                if (input[i] == '.')
-                {
-                    numberOfFractionParts++;
-                }
+                return null;
             }
 
-            return numberOfFractionParts;
+            if (indexOfDot == -1)
+            {
+                return string.Empty;
+            }
+
+            input = indexOfExponent == -1 ? input[(indexOfDot + 1)..] : input[(indexOfDot + 1)..indexOfExponent];
+
+            return input;
         }
 
-        static int CountExponents(string input)
+        static bool IsFraction(string input)
         {
-            int numberOfExponents = 0;
+            if (input == null)
+            {
+                return false;
+            }
+            else if (input.Length == 0)
+            {
+                return true;
+            }
+
             for (int i = 0; i < input.Length; i++)
             {
-                if (input[i] == 'e' || input[i] == 'E')
+                if (input[i] < '0' || input[i] > '9')
                 {
-                    numberOfExponents++;
+                    return false;
                 }
             }
 
-            return numberOfExponents;
+            return true;
         }
 
-        static bool ContainsLetters(string input)
+        static string Exponent(string input, int indexOfExponent)
         {
-            input = input.ToLower();
-            for (int i = 0; i < input.Length; i++)
+            if (indexOfExponent == -1)
             {
-                if ((input[i] >= 'a' && input[i] <= 'd') || (input[i] >= 'f' && input[i] <= 'z'))
-                {
-                    return true;
-                }
+                return string.Empty;
             }
 
-            return false;
+            if (indexOfExponent == input.Length - 1)
+            {
+                return null;
+            }
+
+            input = input[(indexOfExponent + 1)..];
+
+            return input;
         }
     }
 }
