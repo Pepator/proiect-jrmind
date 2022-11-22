@@ -38,25 +38,17 @@ namespace Json
 
         static bool IsInteger(string input)
         {
-            if (input.Length > 1 && input[0] == '0')
+            if (input.Length > 1 && input.StartsWith('0'))
             {
                 return false;
             }
 
-            if (input[0] != '-' && input[0] != '+' && (input[0] < '0' || input[0] > '9'))
+            if (!input.StartsWith('-'))
             {
-                return false;
+                return IsNumber(input);
             }
 
-            for (int i = 1; i < input.Length; i++)
-            {
-                if (input[i] < '0' || input[i] > '9')
-                {
-                    return false;
-                }
-            }
-
-            return true;
+            return IsNumber(input[1..]);
         }
 
         static bool IsExponent(string input)
@@ -125,15 +117,7 @@ namespace Json
                 return true;
             }
 
-            for (int i = 1; i < input.Length; i++)
-            {
-                if (input[i] < '0' || input[i] > '9')
-                {
-                    return false;
-                }
-            }
-
-            return true;
+            return IsNumber(input[1..]);
         }
 
         static string Exponent(string input, int indexOfExponent)
