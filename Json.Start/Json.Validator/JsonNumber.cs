@@ -100,24 +100,19 @@ namespace Json
 
         static string Fraction(string input, int indexOfDot, int indexOfExponent)
         {
-            if (indexOfDot == input.Length - 1)
-            {
-                return null;
-            }
-
             if (indexOfDot == -1)
             {
                 return string.Empty;
             }
 
-            input = indexOfExponent == -1 ? input[(indexOfDot + 1) ..] : input[(indexOfDot + 1) ..indexOfExponent];
+            input = indexOfExponent == -1 ? input[indexOfDot..] : input[indexOfDot..indexOfExponent];
 
             return input;
         }
 
         static bool IsFraction(string input)
         {
-            if (input == null)
+            if (input.Length == 1)
             {
                 return false;
             }
@@ -126,7 +121,7 @@ namespace Json
                 return true;
             }
 
-            for (int i = 0; i < input.Length; i++)
+            for (int i = 1; i < input.Length; i++)
             {
                 if (input[i] < '0' || input[i] > '9')
                 {
