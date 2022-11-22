@@ -21,16 +21,17 @@ namespace Json
 
         static string Integer(string input, int indexOfDot, int indexOfExponent)
         {
-            if (indexOfDot == -1 && indexOfExponent != -1)
+            if (indexOfDot != -1)
+            {
+                return input[..indexOfDot];
+            }
+
+            if (indexOfExponent != -1)
             {
                 return input[..indexOfExponent];
             }
-            else if (indexOfDot == -1 && indexOfExponent == -1)
-            {
-                return input;
-            }
 
-            return input[..indexOfDot];
+            return input;
         }
 
         static bool IsInteger(string input)
@@ -109,7 +110,7 @@ namespace Json
                 return string.Empty;
             }
 
-            input = indexOfExponent == -1 ? input[(indexOfDot + 1)..] : input[(indexOfDot + 1)..indexOfExponent];
+            input = indexOfExponent == -1 ? input[(indexOfDot + 1) ..] : input[(indexOfDot + 1) ..indexOfExponent];
 
             return input;
         }
@@ -148,7 +149,7 @@ namespace Json
                 return null;
             }
 
-            input = input[(indexOfExponent + 1)..];
+            input = input[(indexOfExponent + 1) ..];
 
             return input;
         }
