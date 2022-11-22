@@ -4,6 +4,8 @@ namespace Json
 {
     public static class JsonNumber
     {
+
+        const int IndexAfterOperator = 2;
         public static bool IsJsonNumber(string input)
         {
             return !string.IsNullOrEmpty(input) && SplitInput(input);
@@ -59,19 +61,34 @@ namespace Json
 
         static bool IsExponent(string input)
         {
-            if (input == null)
+            if (input.Length == 1)
             {
                 return false;
             }
 
-            if (!AcceptableFirsAndLastCharacter(input))
+            if (input.Length == 0)
+            {
+                return true;
+            }
+
+            if (input[1] != '+' && input[1] != '-')
+            {
+                return IsNumber(input[1..]);
+            }
+
+            return IsNumber(input[IndexAfterOperator..]);
+        }
+
+        static bool IsNumber(string input)
+        {
+            if (input.Length == 0)
             {
                 return false;
             }
 
             for (int i = 1; i < input.Length; i++)
             {
-                if (input[i] < '0' || input[i] > '9')
+                if (!IsFigure(input[i]))
                 {
                     return false;
                 }
@@ -80,22 +97,9 @@ namespace Json
             return true;
         }
 
-        static bool AcceptableFirsAndLastCharacter(string input)
+        static bool IsFigure(char nr)
         {
-            if (input.Length == 0)
-            {
-                return true;
-            }
-            else if (input[0] != '-' && input[0] != '+' && (input[0] < '0' || input[0] > '9'))
-            {
-                return false;
-            }
-            else if (input[input.Length - 1] < '0' || input[input.Length - 1] > '9')
-            {
-                return false;
-            }
-
-            return true;
+            return nr >= '0' && nr <= '9';
         }
 
         static string Fraction(string input, int indexOfDot, int indexOfExponent)
@@ -139,12 +143,7 @@ namespace Json
                 return string.Empty;
             }
 
-            if (indexOfExponent == input.Length - 1)
-            {
-                return null;
-            }
-
-            input = input[(indexOfExponent + 1) ..];
+            input = input[indexOfExponent..];
 
             return input;
         }
