@@ -4,8 +4,8 @@ namespace Json
 {
     public static class JsonNumber
     {
-
         const int IndexAfterOperator = 2;
+
         public static bool IsJsonNumber(string input)
         {
             return !string.IsNullOrEmpty(input) && SplitInput(input);
