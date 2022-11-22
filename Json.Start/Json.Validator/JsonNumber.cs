@@ -4,8 +4,6 @@ namespace Json
 {
     public static class JsonNumber
     {
-        const int IndexAfterOperator = 2;
-
         public static bool IsJsonNumber(string input)
         {
             return !string.IsNullOrEmpty(input) && SplitInput(input);
@@ -43,32 +41,24 @@ namespace Json
                 return false;
             }
 
-            if (!input.StartsWith('-'))
+            if (input.StartsWith('-'))
             {
-                return IsNumber(input);
+                input = input[1..];
             }
 
-            return IsNumber(input[1..]);
+            return IsNumber(input);
         }
 
         static bool IsExponent(string input)
         {
-            if (input.Length == 1)
+            input = input[1..];
+
+            if (input.StartsWith('+') || input.StartsWith('-'))
             {
-                return false;
+                input = input[1..];
             }
 
-            if (input.Length == 0)
-            {
-                return true;
-            }
-
-            if (input[1] != '+' && input[1] != '-')
-            {
-                return IsNumber(input[1..]);
-            }
-
-            return IsNumber(input[IndexAfterOperator..]);
+            return IsNumber(input);
         }
 
         static bool IsNumber(string input)
@@ -80,18 +70,13 @@ namespace Json
 
             for (int i = 0; i < input.Length; i++)
             {
-                if (!IsFigure(input[i]))
+                if (!char.IsDigit(input[i]))
                 {
                     return false;
                 }
             }
 
             return true;
-        }
-
-        static bool IsFigure(char nr)
-        {
-            return nr >= '0' && nr <= '9';
         }
 
         static string Fraction(string input, int indexOfDot, int indexOfExponent)
@@ -101,23 +86,12 @@ namespace Json
                 return string.Empty;
             }
 
-            input = indexOfExponent == -1 ? input[indexOfDot..] : input[indexOfDot..indexOfExponent];
-
-            return input;
+            return indexOfExponent == -1 ? input[indexOfDot..] : input[indexOfDot..indexOfExponent];
         }
 
         static bool IsFraction(string input)
         {
-            if (input.Length == 1)
-            {
-                return false;
-            }
-            else if (input.Length == 0)
-            {
-                return true;
-            }
-
-            return IsNumber(input[1..]);
+            return input.Length == 0 || IsNumber(input[1..]);
         }
 
         static string Exponent(string input, int indexOfExponent)
@@ -127,9 +101,7 @@ namespace Json
                 return string.Empty;
             }
 
-            input = input[indexOfExponent..];
-
-            return input;
+            return input[indexOfExponent..];
         }
     }
 }
