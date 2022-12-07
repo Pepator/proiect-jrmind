@@ -24,7 +24,7 @@ namespace Clasament_de_fotbal
         public void AddTeam(Team team)
         {
             teams.Add(team);
-            SortTeams(ref teams);
+            SortTeams();
         }
 
         public Team ReportTeam(int index)
@@ -58,10 +58,10 @@ namespace Clasament_de_fotbal
                 team1.AddToScore(PointsIfDraw);
                 team2.AddToScore(PointsIfDraw);
             }
-            SortTeams(ref teams);
+            SortTeams();
         }
 
-        public void SortTeams(ref List<Team> teams)
+        public void SortTeams()
         {
             Team free;
             for (int i = 0; i < teams.Count - 1; i++)

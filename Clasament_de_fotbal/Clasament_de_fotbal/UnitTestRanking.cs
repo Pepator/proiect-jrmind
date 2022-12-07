@@ -37,7 +37,7 @@
             teams.Add(team1);
             teams.Add(team2);
             Ranking teamsList = new Ranking(teams);
-            Assert.Equal(teamsList.ReportIndex("team2"), 2);
+            Assert.Equal(teamsList.ReportIndex(team2), 2);
         }
 
         [Fact]
@@ -50,7 +50,7 @@
             teams.Add(team2);
             Ranking teamsList = new Ranking(teams);
             teamsList.UpdateRanking(team1, team2, 2);
-            Assert.Equal(teamsList.ReportIndex("team2"), 1);
+            Assert.Equal(teamsList.ReportIndex(team2), 1);
         }
 
         [Fact]
@@ -62,8 +62,8 @@
             teams.Add(team1);
             teams.Add(team2);
             Ranking teamsList = new Ranking(teams);
-            teamsList.SortTeams(ref teams);
-            Assert.Equal(teamsList.ReportIndex("team2"), 1);
+            teamsList.SortTeams();
+            Assert.Equal(teamsList.ReportIndex(team2), 1);
         }
     }
 }
