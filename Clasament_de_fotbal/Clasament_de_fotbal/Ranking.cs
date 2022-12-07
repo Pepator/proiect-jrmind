@@ -44,7 +44,7 @@ namespace Clasament_de_fotbal
             return -1;
         }
 
-        public void UpdateRanking(Team team1, Team team2, int x)
+        public void UpdateRanking(int teamOneScore, int teamTwoScore)
         {
             if (x == FirstTeamWon) 
             {
@@ -64,16 +64,23 @@ namespace Clasament_de_fotbal
         public void SortTeams()
         {
             Team free;
+            bool swapped;
             for (int i = 0; i < teams.Count - 1; i++)
             {
-                for (int j = i + 1; j < teams.Count; j++)
+                swapped = false;
+                for (int j = 0; j < teams.Count - 1 - i; j++)
                 {
-                    if (!teams[i].HasBiggerScoreThan(teams[j]))
+                    if (!teams[j].HasBiggerScoreThan(teams[j + 1]))
                     {
                         free = teams[j];
-                        teams[j] = teams[i];
-                        teams[i] = free;
+                        teams[j] = teams[j + 1];
+                        teams[j + 1] = free;
+                        swapped = true;
                     }
+                }
+                if (swapped == false)
+                {
+                    break;
                 }
             }
         }
