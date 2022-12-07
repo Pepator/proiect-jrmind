@@ -44,7 +44,7 @@ namespace Clasament_de_fotbal
             return -1;
         }
 
-        public void UpdateRanking(int teamOneScore, int teamTwoScore)
+        public void UpdateRanking(Team team1, Team team2, int x)
         {
             if (x == FirstTeamWon) 
             {
