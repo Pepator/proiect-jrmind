@@ -22,11 +22,6 @@ namespace Clasament_de_fotbal
             return this.score > that.score;
         }
 
-        public bool HasSameName(string name)
-        {
-            return this.name.Equals(name);
-        }
-
         public void AddToScore(int x)
         {
             this.score += x;

@@ -32,11 +32,11 @@ namespace Clasament_de_fotbal
             return teams[index - 1];
         }
 
-        public int ReportIndex(string teamName)
+        public int ReportIndex(Team teamName)
         {
             for (int i = 0; i < teams.Count; i++)
             {
-                if (teams[i].HasSameName(teamName))
+                if (teams[i].Equals(teamName))
                 { 
                    return i + 1;
                 } 

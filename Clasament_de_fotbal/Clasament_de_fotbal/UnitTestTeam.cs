@@ -11,13 +11,6 @@ namespace Clasament_de_fotbal
         }
 
         [Fact]
-        public void HasSameName_ComparesTwoTeamNames_ShouldReturnTrueIfTeam1HasGivenName()
-        {
-            Team team1 = new Team("team1", 1);
-            Assert.True(team1.HasSameName("team1"));
-        }
-
-        [Fact]
         public void AddToScore_AddsPointsToTeamScore_ShouldAddGivenPointsToScore()
         {
             Team team1 = new Team("team1", 1);
