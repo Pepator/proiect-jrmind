@@ -51,6 +51,11 @@ namespace Json
 
         static bool IsExponent(string input)
         {
+            if (input.Length == 0)
+            {
+                return true;
+            }
+
             input = input[1..];
 
             if (input.StartsWith('+') || input.StartsWith('-'))
