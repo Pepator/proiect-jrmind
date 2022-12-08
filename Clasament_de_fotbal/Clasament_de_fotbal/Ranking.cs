@@ -44,19 +44,19 @@ namespace Clasament_de_fotbal
             return -1;
         }
 
-        public void UpdateRanking(Team team1, Team team2, int x)
+        public void UpdateRanking(Team homeTeam, Team awayTeam, int resultOfGame)
         {
-            if (x == FirstTeamWon) 
+            if (resultOfGame == FirstTeamWon) 
             {
-                team1.AddToScore(PointsIfWin);
-            }else if (x == SecondTeamWon)
+                homeTeam.AddToScore(PointsIfWin);
+            }else if (resultOfGame == SecondTeamWon)
             {
-                team2.AddToScore(PointsIfWin);
+                awayTeam.AddToScore(PointsIfWin);
             }
             else
             {
-                team1.AddToScore(PointsIfDraw);
-                team2.AddToScore(PointsIfDraw);
+                homeTeam.AddToScore(PointsIfDraw);
+                awayTeam.AddToScore(PointsIfDraw);
             }
             SortTeams();
         }
