@@ -7,7 +7,7 @@ using System.Web;
 
 namespace problema_3
 {
-    public class Range
+    public class Range : IPattern
     {
         private char start;
         private char end;
