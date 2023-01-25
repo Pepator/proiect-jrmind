@@ -18,9 +18,14 @@ namespace problema_3
             this.end = end;
         }
 
-        public bool Match(string text)
+        public IMatch Match(string text)
         {
-            return (!string.IsNullOrEmpty(text)) && (text[0] >= start && text[0] <= end);
+            if (string.IsNullOrEmpty(text) || !(text[0] >= start && text[0] <= end))
+            {
+                return new Match(false, text);
+            }
+
+            return new Match(true, text[1..]);
         }
     }
 }

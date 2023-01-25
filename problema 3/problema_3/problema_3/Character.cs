@@ -15,12 +15,14 @@ namespace problema_3
             this.pattern = pattern;
         }
 
-        public bool Match(string text)
+        public IMatch Match(string text)
         {
-            if (string.IsNullOrEmpty(text))
-                return false;
-
-            return text[0] == pattern;
+            if (string.IsNullOrEmpty(text) || text[0] != pattern)
+            {
+                return new Match(false, text);
+            }
+                
+            return new Match(true, text[1..]);
         }
     }
 }

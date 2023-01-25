@@ -15,18 +15,17 @@ namespace problema_3
             this.patterns = patterns;
         }
 
-        public bool Match(string text)
+        public IMatch Match(string text)
         {
             foreach (var pattern in patterns)
             {
-                if (pattern.Match(text))
+                if (pattern.Match(text).Succes())
                 {
-                    return true;
+                    return new Match(true, text[1..]);
                 }
             }
 
-            return false;
+            return new Match(false, text);
         }
-
     }
 }

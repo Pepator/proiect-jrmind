@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace problema_3
 {
-    public interface IPattern
+    public interface IMatch
     {
-        IMatch Match(string text);
+        bool Succes();
+        string RemainingText();
     }
 }
