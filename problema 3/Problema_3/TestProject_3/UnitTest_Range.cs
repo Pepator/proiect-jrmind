@@ -8,21 +8,24 @@ namespace problema_3
         public void Match_ValidateStartOfString_ShouldReturnTrueAndRemainingTextIfStartOfStringIsInRange()
         {
             Range test = new Range('a', 'f');
-            Assert.Equal((true, "bcd"), (test.Match("abcd").Succes(), test.Match("abcd").RemainingText()));
+            var match = test.Match("abcd");
+            Assert.Equal((true, "bcd"), (match.Succes(), match.RemainingText()));
         }
 
         [Fact]
         public void Match_ValidateStartOfString_ShouldReturnFalseAndTextIfStringIsNull()
         {
             Range test = new Range('a', 'f');
-            Assert.Equal((false, null), (test.Match(null).Succes(), test.Match(null).RemainingText()));
+            var match = test.Match("");
+            Assert.Equal((false, ""), (match.Succes(), match.RemainingText()));
         }
 
         [Fact]
         public void Match_ValidateStartOfString_ShouldReturnFalseAndTextIfStringIsEmpty()
         {
             Range test = new Range('a', 'f');
-            Assert.Equal((false, ""), (test.Match("").Succes(), test.Match("").RemainingText()));
+            var match = test.Match(null);
+            Assert.Equal((false, null), (match.Succes(), match.RemainingText()));
         }
     }
 }

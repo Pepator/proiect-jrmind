@@ -16,19 +16,7 @@ namespace problema_3
             this.succes = succes;
             this.text = text;
         }
-
-        //public override bool Equals(object? obj)
-        //{
-        //    return obj is Match match &&
-        //           succes == match.succes &&
-        //           text == match.text;
-        //} 
-
-        //public override int GetHashCode()
-        //{
-        //    return HashCode.Combine(succes, text);
-        //}
-
+        
         public string RemainingText()
         {
             return text;

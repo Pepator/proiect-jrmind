@@ -8,21 +8,24 @@ namespace problema_3
         public void Match_ValidateChoiceClass_ShouldRetrunTrueAndRemainingTextIfConditionsAreMet()
         {
             var digit = new Choice(new Character('0'), new Range('1', '9'));
-            Assert.Equal((true, "1234"), (digit.Match("01234").Succes(), digit.Match("01234").RemainingText()));
+            var match = digit.Match("01234");
+            Assert.Equal((true, "1234"), (match.Succes(), match.RemainingText()));
         }
 
         [Fact]
         public void Match_ValidateChoiceClass_ShouldRetrunFalseAndTextForEmptyString()
         {
             var digit = new Choice(new Character('0'), new Range('1', '9'));
-            Assert.Equal((false, ""), (digit.Match("").Succes(), digit.Match("").RemainingText()));
+            var match = digit.Match("");
+            Assert.Equal((false, ""), (match.Succes(), match.RemainingText()));
         }
 
         [Fact]
         public void Match_ValidateChoiceClass_ShouldRetrunFalseAndTextForNull()
         {
             var digit = new Choice(new Character('0'), new Range('1', '9'));
-            Assert.Equal((false, null), (digit.Match(null).Succes(), digit.Match(null).RemainingText()));
+            var match = digit.Match(null);
+            Assert.Equal((false, null), (match.Succes(), match.RemainingText()));
         }
 
         [Fact]
@@ -30,7 +33,8 @@ namespace problema_3
         {
             var digit = new Choice(new Character('0'), new Range('1', '9'));
             var hex = new Choice(digit, new Choice(new Range('a', 'f'), new Range('A', 'F')));
-            Assert.Equal((true, "1234"), (hex.Match("01234").Succes(), hex.Match("01234").RemainingText()));
+            var match = hex.Match("01234");
+            Assert.Equal((true, "1234"), (match.Succes(), match.RemainingText()));
         }
 
         [Fact]
@@ -38,7 +42,8 @@ namespace problema_3
         {
             var digit = new Choice(new Character('0'), new Range('1', '9'));
             var hex = new Choice(digit, new Choice(new Range('a', 'f'), new Range('A', 'F')));
-            Assert.Equal((false, ""), (hex.Match("").Succes(), hex.Match("").RemainingText()));
+            var match = hex.Match("");
+            Assert.Equal((false, ""), (match.Succes(), match.RemainingText()));
         }
 
         [Fact]
@@ -46,7 +51,8 @@ namespace problema_3
         {
             var digit = new Choice(new Character('0'), new Range('1', '9'));
             var hex = new Choice(digit, new Choice(new Range('a', 'f'), new Range('A', 'F')));
-            Assert.Equal((false, null), (hex.Match(null).Succes(), hex.Match(null).RemainingText()));
+            var match = hex.Match(null);
+            Assert.Equal((false, null), (match.Succes(), match.RemainingText()));
         }
     }
 }
