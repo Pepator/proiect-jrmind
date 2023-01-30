@@ -49,5 +49,13 @@ namespace Problema_3
             Assert.Equal((false, "xtruex"), (match.Succes(), match.RemainingText()));
         }
 
+        [Fact]
+        public void Match_ValidateTextClass_ShouldRetrunfalseAndTextIfPrefixHasMoreCharacters()
+        {
+            var b = new Text("truexx");
+            var match = b.Match("truex");
+            Assert.Equal((false, "truex"), (match.Succes(), match.RemainingText()));
+        }
+
     }
 }
