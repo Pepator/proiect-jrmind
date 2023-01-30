@@ -17,7 +17,9 @@ namespace Problema_3
 
         public IMatch Match(string text)
         {
-            if (string.IsNullOrEmpty(text) || !text.Contains(prefix))
+            string pref = prefix[0..prefix.Length];
+
+            if (string.IsNullOrEmpty(text) || !text.Contains(pref))
             {
                 return new Match(false, text);
             }
