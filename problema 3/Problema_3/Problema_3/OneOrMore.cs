@@ -13,9 +13,7 @@ namespace Problema_3
 
         public OneOrMore(IPattern pattern)
         {
-            // aici folosește-te de clasele implementate deja
-            // pentru a construi un pattern care să îl folosești în Match
-            this.pattern = ...;
+            this.pattern = new Sequence(pattern, new Many(pattern));
         }
 
         public IMatch Match(string text)
