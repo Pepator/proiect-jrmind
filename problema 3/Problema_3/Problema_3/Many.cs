@@ -18,14 +18,14 @@ namespace Problema_3
         public IMatch Match(string text)
         {
             string newText = text;
+            IMatch newIMatch = pattern.Match(newText);
 
-            while (pattern.Match(newText).Success())
+            while (newIMatch.Success())
             {
-                newText = pattern.Match(newText).RemainingText();
+                newText = newIMatch.RemainingText();
             }
 
             return new Match(true, newText);
-
         }
     }
 }
