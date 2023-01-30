@@ -30,7 +30,7 @@ namespace Problema_3
         {
             var b = new Text("");
             var match = b.Match("true");
-            Assert.Equal((true, "true"), (match.Succes(), match.RemainingText()));
+            Assert.Equal((false, ""), (match.Succes(), match.RemainingText()));
         }
 
         [Fact]
@@ -39,6 +39,14 @@ namespace Problema_3
             var b = new Text("");
             var match = b.Match(null);
             Assert.Equal((false, null), (match.Succes(), match.RemainingText()));
+        }
+
+        [Fact]
+        public void Match_ValidateTextClass_ShouldRetrunfalseAndText()
+        {
+            var b = new Text("true");
+            var match = b.Match("xtruex");
+            Assert.Equal((false, "xtruex"), (match.Succes(), match.RemainingText()));
         }
 
     }

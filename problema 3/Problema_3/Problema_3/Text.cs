@@ -17,11 +17,13 @@ namespace Problema_3
 
         public IMatch Match(string text)
         {
-            string pref = prefix[0..prefix.Length];
-
-            if (string.IsNullOrEmpty(text) || !text.Contains(pref))
+            if (string.IsNullOrEmpty(text) || !text.StartsWith(prefix))
             {
                 return new Match(false, text);
+            }
+            else if (prefix.Length == 0)
+            {
+                return new Match(false, "");
             }
 
             return new Match(true, text[prefix.Length..]);
