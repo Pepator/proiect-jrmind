@@ -14,7 +14,7 @@ namespace Problema_3
         {
             var b = new Text("true");
             var match = b.Match("truex");
-            Assert.Equal((true, "x"), (match.Succes(), match.RemainingText()));
+            Assert.Equal((true, "x"), (match.Success(), match.RemainingText()));
         }
 
         [Fact]
@@ -22,7 +22,7 @@ namespace Problema_3
         {
             var b = new Text("true");
             var match = b.Match("false");
-            Assert.Equal((false, "false"), (match.Succes(), match.RemainingText()));
+            Assert.Equal((false, "false"), (match.Success(), match.RemainingText()));
         }
 
         [Fact]
@@ -30,7 +30,7 @@ namespace Problema_3
         {
             var b = new Text("");
             var match = b.Match("true");
-            Assert.Equal((false, ""), (match.Succes(), match.RemainingText()));
+            Assert.Equal((false, ""), (match.Success(), match.RemainingText()));
         }
 
         [Fact]
@@ -38,7 +38,7 @@ namespace Problema_3
         {
             var b = new Text("");
             var match = b.Match(null);
-            Assert.Equal((false, null), (match.Succes(), match.RemainingText()));
+            Assert.Equal((false, null), (match.Success(), match.RemainingText()));
         }
 
         [Fact]
@@ -46,7 +46,7 @@ namespace Problema_3
         {
             var b = new Text("true");
             var match = b.Match("xtruex");
-            Assert.Equal((false, "xtruex"), (match.Succes(), match.RemainingText()));
+            Assert.Equal((false, "xtruex"), (match.Success(), match.RemainingText()));
         }
 
         [Fact]
@@ -54,7 +54,7 @@ namespace Problema_3
         {
             var b = new Text("truexx");
             var match = b.Match("truex");
-            Assert.Equal((false, "truex"), (match.Succes(), match.RemainingText()));
+            Assert.Equal((false, "truex"), (match.Success(), match.RemainingText()));
         }
 
     }

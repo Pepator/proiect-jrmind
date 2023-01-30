@@ -14,7 +14,7 @@ namespace Problema_3
         {
             var a = new Many(new Character('a'));
             var match = a.Match("aaaabc");
-            Assert.Equal((true, "bc"), (match.Succes(), match.RemainingText()));
+            Assert.Equal((true, "bc"), (match.Success(), match.RemainingText()));
         }
 
         [Fact]
@@ -22,7 +22,7 @@ namespace Problema_3
         {
             var a = new Many(new Character('a'));
             var match = a.Match("bc");
-            Assert.Equal((true, "bc"), (match.Succes(), match.RemainingText()));
+            Assert.Equal((true, "bc"), (match.Success(), match.RemainingText()));
         }
 
         [Fact]
@@ -30,7 +30,7 @@ namespace Problema_3
         {
             var a = new Many(new Character('a'));
             var match = a.Match("");
-            Assert.Equal((true, ""), (match.Succes(), match.RemainingText()));
+            Assert.Equal((true, ""), (match.Success(), match.RemainingText()));
         }
 
         [Fact]
@@ -38,7 +38,7 @@ namespace Problema_3
         {
             var digits = new Many(new problema_3.Range('0', '9'));
             var match = digits.Match("12345ab123");
-            Assert.Equal((true, "ab123"), (match.Succes(), match.RemainingText()));
+            Assert.Equal((true, "ab123"), (match.Success(), match.RemainingText()));
         }
 
         [Fact]
@@ -46,7 +46,7 @@ namespace Problema_3
         {
             var digits = new Many(new problema_3.Range('0', '9'));
             var match = digits.Match("ab");
-            Assert.Equal((true, "ab"), (match.Succes(), match.RemainingText()));
+            Assert.Equal((true, "ab"), (match.Success(), match.RemainingText()));
         }
     }
 }

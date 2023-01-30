@@ -22,7 +22,7 @@ namespace problema_3
             return text;
         }
 
-        public bool Succes()
+        public bool Success()
         {
             return succes;
         }

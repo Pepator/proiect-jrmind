@@ -9,7 +9,7 @@ namespace problema_3
         {
             Range test = new Range('a', 'f');
             var match = test.Match("abcd");
-            Assert.Equal((true, "bcd"), (match.Succes(), match.RemainingText()));
+            Assert.Equal((true, "bcd"), (match.Success(), match.RemainingText()));
         }
 
         [Fact]
@@ -17,7 +17,7 @@ namespace problema_3
         {
             Range test = new Range('a', 'f');
             var match = test.Match("");
-            Assert.Equal((false, ""), (match.Succes(), match.RemainingText()));
+            Assert.Equal((false, ""), (match.Success(), match.RemainingText()));
         }
 
         [Fact]
@@ -25,7 +25,7 @@ namespace problema_3
         {
             Range test = new Range('a', 'f');
             var match = test.Match(null);
-            Assert.Equal((false, null), (match.Succes(), match.RemainingText()));
+            Assert.Equal((false, null), (match.Success(), match.RemainingText()));
         }
     }
 }

@@ -19,7 +19,7 @@ namespace Problema_3
         {
             string newText = text;
 
-            while (pattern.Match(newText).Succes())
+            while (pattern.Match(newText).Success())
             {
                 newText = pattern.Match(newText).RemainingText();
             }

@@ -17,7 +17,7 @@ namespace Problema_3
 
         public IMatch Match(string text)
         {
-            if (pattern.Match(text).Succes())
+            if (pattern.Match(text).Success())
             {
                 return new Match(true, text[1..]);
             }

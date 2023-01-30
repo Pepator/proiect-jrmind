@@ -15,7 +15,7 @@ namespace problema_3
         {
             var e = new Problema_3.Any("eE");
             var match = e.Match("ea");
-            Assert.Equal((true, "a"), (match.Succes(), match.RemainingText()));
+            Assert.Equal((true, "a"), (match.Success(), match.RemainingText()));
         }
 
         [Fact]
@@ -23,7 +23,7 @@ namespace problema_3
         {
             var e = new Problema_3.Any("eE");
             var match = e.Match("aa");
-            Assert.Equal((false, "aa"), (match.Succes(), match.RemainingText()));
+            Assert.Equal((false, "aa"), (match.Success(), match.RemainingText()));
         }
 
         [Fact]
@@ -31,7 +31,7 @@ namespace problema_3
         {
             var sign = new Problema_3.Any("-+");
             var match = sign.Match("+aa");
-            Assert.Equal((true, "aa"), (match.Succes(), match.RemainingText()));
+            Assert.Equal((true, "aa"), (match.Success(), match.RemainingText()));
         }
 
         [Fact]
@@ -39,7 +39,7 @@ namespace problema_3
         {
             var sign = new Problema_3.Any("-+");
             var match = sign.Match(null);
-            Assert.Equal((false, null), (match.Succes(), match.RemainingText()));
+            Assert.Equal((false, null), (match.Success(), match.RemainingText()));
         }
 
 

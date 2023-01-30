@@ -14,7 +14,7 @@ namespace problema_3
         {
             var ab = new Sequence(new Character('a'), new Character('b'));
             var match = ab.Match("abcd");
-            Assert.Equal((true, "cd"), (match.Succes(), match.RemainingText()));
+            Assert.Equal((true, "cd"), (match.Success(), match.RemainingText()));
         }
 
         [Fact]
@@ -22,7 +22,7 @@ namespace problema_3
         {
             var ab = new Sequence(new Character('a'), new Character('b'));
             var match = ab.Match("axcd");
-            Assert.Equal((false, "axcd"), (match.Succes(), match.RemainingText()));
+            Assert.Equal((false, "axcd"), (match.Success(), match.RemainingText()));
         }
 
         [Fact]
@@ -30,7 +30,7 @@ namespace problema_3
         {
             var ab = new Sequence(new Character('a'), new Character('b'));
             var match = ab.Match("");
-            Assert.Equal((false, ""), (match.Succes(), match.RemainingText()));
+            Assert.Equal((false, ""), (match.Success(), match.RemainingText()));
         }
 
         [Fact]
@@ -38,7 +38,7 @@ namespace problema_3
         {
             var ab = new Sequence(new Character('a'), new Character('b'));
             var match = ab.Match(null);
-            Assert.Equal((false, null), (match.Succes(), match.RemainingText()));
+            Assert.Equal((false, null), (match.Success(), match.RemainingText()));
         }
 
         [Fact]
@@ -47,7 +47,7 @@ namespace problema_3
             var ab = new Sequence(new Character('a'), new Character('b'));
             var abc = new Sequence(ab, new Character('c'));
             var match = abc.Match("abcd");
-            Assert.Equal((true, "d"), (match.Succes(), match.RemainingText()));
+            Assert.Equal((true, "d"), (match.Success(), match.RemainingText()));
         }
 
         [Fact]
@@ -56,7 +56,7 @@ namespace problema_3
             var hex = new Choice(new Range('0', '9'), new Range('a', 'f'), new Range('A', 'F'));
             var hexSeq = new Sequence(new Character('u'), new Sequence(hex, hex, hex, hex));
             var match = hexSeq.Match("u1234");
-            Assert.Equal((true, ""), (match.Succes(), match.RemainingText()));
+            Assert.Equal((true, ""), (match.Success(), match.RemainingText()));
         }
     }
 }

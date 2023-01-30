@@ -23,7 +23,7 @@ namespace Problema_3
             {
                 IMatch newIMatch = pattern.Match(newText);
 
-                if (!newIMatch.Succes())
+                if (!newIMatch.Success())
                 {
                     return new Match(false, text);
                 }

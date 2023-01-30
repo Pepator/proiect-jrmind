@@ -9,7 +9,7 @@ namespace problema_3
         {
             var digit = new Choice(new Character('0'), new Range('1', '9'));
             var match = digit.Match("01234");
-            Assert.Equal((true, "1234"), (match.Succes(), match.RemainingText()));
+            Assert.Equal((true, "1234"), (match.Success(), match.RemainingText()));
         }
 
         [Fact]
@@ -17,7 +17,7 @@ namespace problema_3
         {
             var digit = new Choice(new Character('0'), new Range('1', '9'));
             var match = digit.Match("");
-            Assert.Equal((false, ""), (match.Succes(), match.RemainingText()));
+            Assert.Equal((false, ""), (match.Success(), match.RemainingText()));
         }
 
         [Fact]
@@ -25,7 +25,7 @@ namespace problema_3
         {
             var digit = new Choice(new Character('0'), new Range('1', '9'));
             var match = digit.Match(null);
-            Assert.Equal((false, null), (match.Succes(), match.RemainingText()));
+            Assert.Equal((false, null), (match.Success(), match.RemainingText()));
         }
 
         [Fact]
@@ -34,7 +34,7 @@ namespace problema_3
             var digit = new Choice(new Character('0'), new Range('1', '9'));
             var hex = new Choice(digit, new Choice(new Range('a', 'f'), new Range('A', 'F')));
             var match = hex.Match("01234");
-            Assert.Equal((true, "1234"), (match.Succes(), match.RemainingText()));
+            Assert.Equal((true, "1234"), (match.Success(), match.RemainingText()));
         }
 
         [Fact]
@@ -43,7 +43,7 @@ namespace problema_3
             var digit = new Choice(new Character('0'), new Range('1', '9'));
             var hex = new Choice(digit, new Choice(new Range('a', 'f'), new Range('A', 'F')));
             var match = hex.Match("");
-            Assert.Equal((false, ""), (match.Succes(), match.RemainingText()));
+            Assert.Equal((false, ""), (match.Success(), match.RemainingText()));
         }
 
         [Fact]
@@ -52,7 +52,7 @@ namespace problema_3
             var digit = new Choice(new Character('0'), new Range('1', '9'));
             var hex = new Choice(digit, new Choice(new Range('a', 'f'), new Range('A', 'F')));
             var match = hex.Match(null);
-            Assert.Equal((false, null), (match.Succes(), match.RemainingText()));
+            Assert.Equal((false, null), (match.Success(), match.RemainingText()));
         }
     }
 }

@@ -14,14 +14,14 @@ namespace problema_3
         {
             var a = new Optional(new Character('a'));
             var match = a.Match("abc");
-            Assert.Equal((true, "bc"), (match.Succes(), match.RemainingText()));
+            Assert.Equal((true, "bc"), (match.Success(), match.RemainingText()));
         }
         [Fact]
         public void Match_ValidateOptionalClass_ShouldRetrunTrueAndText()
         {
             var a = new Optional(new Character('a'));
             var match = a.Match("bc");
-            Assert.Equal((true, "bc"), (match.Succes(), match.RemainingText()));
+            Assert.Equal((true, "bc"), (match.Success(), match.RemainingText()));
         }
 
         [Fact]
@@ -29,16 +29,30 @@ namespace problema_3
         {
             var a = new Optional(new Character('a'));
             var match = a.Match("");
-            Assert.Equal((true, ""), (match.Succes(), match.RemainingText()));
+            Assert.Equal((true, ""), (match.Success(), match.RemainingText()));
         }
         [Fact]
         public void Match_ValidateOptionalClass_ShouldRetrunTrueAndNullForNull()
         {
             var a = new Optional(new Character('a'));
             var match = a.Match(null);
-            Assert.Equal((true, null), (match.Succes(), match.RemainingText()));
+            Assert.Equal((true, null), (match.Success(), match.RemainingText()));
         }
 
+        [Fact]
+        public void asdMatch_ValidateOptionalClass_ShouldRetrunTrueAndRemainingText()
+        {
+            var sign = new Optional(new Character('-'));
+            var match = sign.Match("123");
+            Assert.Equal((true, "123"), (match.Success(), match.RemainingText()));
+        }
 
+        [Fact]
+        public void adMatch_ValidateOptionalClass_ShouldRetrunTrueAndRemainingText()
+        {
+            var sign = new Optional(new Character('-'));
+            var match = sign.Match("-123");
+            Assert.Equal((true, "123"), (match.Success(), match.RemainingText()));
+        }
     }
 }
