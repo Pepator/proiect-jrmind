@@ -40,7 +40,7 @@ namespace problema_3
         }
 
         [Fact]
-        public void asdMatch_ValidateOptionalClass_ShouldRetrunTrueAndRemainingText()
+        public void Match_ValidateOptionalClass_ShouldRetrunTrueAndTextIfItHasNoSign()
         {
             var sign = new Optional(new Character('-'));
             var match = sign.Match("123");
@@ -48,11 +48,27 @@ namespace problema_3
         }
 
         [Fact]
-        public void adMatch_ValidateOptionalClass_ShouldRetrunTrueAndRemainingText()
+        public void Match_ValidateOptionalClass_ShouldRetrunTrueAndRemainingTextIfItHasNoSign()
         {
             var sign = new Optional(new Character('-'));
             var match = sign.Match("-123");
             Assert.Equal((true, "123"), (match.Success(), match.RemainingText()));
+        }
+
+        [Fact]
+        public void Match_ValidateOptionalClass_ShouldRetrunTrueAndRemainingTextForRangeClass()
+        {
+            var sign = new Optional(new Range('0', '9'));
+            var match = sign.Match("12hhh");
+            Assert.Equal((true, "2hhh"), (match.Success(), match.RemainingText()));
+        }
+
+        [Fact]
+        public void Match_ValidateOptionalClass_ShouldRetrunTrueAndRemainingTextForTextClass()
+        {
+            var sign = new Optional(new Text("text"));
+            var match = sign.Match("textxx");
+            Assert.Equal((true, "xx"), (match.Success(), match.RemainingText()));
         }
     }
 }

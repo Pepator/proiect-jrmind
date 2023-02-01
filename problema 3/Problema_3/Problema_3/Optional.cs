@@ -17,12 +17,19 @@ namespace Problema_3
 
         public IMatch Match(string text)
         {
-            if (pattern.Match(text).Success())
+            string newText = text;
+            IMatch newIMatch = pattern.Match(newText);
+
+            if (!newIMatch.Success())
             {
-                return new Match(true, text[1..]);
+                return new Match(true, text);
+            }
+            else
+            {
+                newText= newIMatch.RemainingText();
             }
 
-            return new Match(true, text);
+            return new Match(true, newText);
         }
     }
 }
