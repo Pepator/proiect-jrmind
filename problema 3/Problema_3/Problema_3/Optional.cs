@@ -17,19 +17,7 @@ namespace Problema_3
 
         public IMatch Match(string text)
         {
-            string newText = text;
-            IMatch newIMatch = pattern.Match(newText);
-
-            if (!newIMatch.Success())
-            {
-                return new Match(true, text);
-            }
-            else
-            {
-                newText= newIMatch.RemainingText();
-            }
-
-            return new Match(true, newText);
+            return new Match(true, pattern.Match(text).RemainingText());
         }
     }
 }
