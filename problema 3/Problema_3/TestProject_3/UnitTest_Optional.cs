@@ -16,6 +16,7 @@ namespace problema_3
             var match = a.Match("abc");
             Assert.Equal((true, "bc"), (match.Success(), match.RemainingText()));
         }
+
         [Fact]
         public void Match_ValidateOptionalClass_ShouldRetrunTrueAndText()
         {

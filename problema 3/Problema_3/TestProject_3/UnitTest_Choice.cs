@@ -7,7 +7,7 @@ namespace problema_3
         [Fact]
         public void Match_ValidateChoiceClass_ShouldRetrunTrueAndRemainingTextIfConditionsAreMet()
         {
-            var digit = new Choice(new Character('0'), new Range('1', '9'));
+            var digit = new Choice(new Character('0'), new Range('0', '9'));
             var match = digit.Match("01234");
             Assert.Equal((true, "1234"), (match.Success(), match.RemainingText()));
         }

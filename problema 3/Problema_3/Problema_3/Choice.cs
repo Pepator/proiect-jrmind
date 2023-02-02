@@ -19,9 +19,11 @@ namespace problema_3
         {
             foreach (var pattern in patterns)
             {
-                if (pattern.Match(text).Success())
+                IMatch newIMatch = pattern.Match(text);
+
+                if (newIMatch.Success())
                 {
-                    return new Match(true, text[1..]);
+                    return new Match(true, newIMatch.RemainingText());
                 }
             }
 
