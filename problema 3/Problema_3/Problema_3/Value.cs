@@ -14,7 +14,7 @@ namespace problema_3
 
         public Value()
         {
-            var white = new Many(new Any(" \n\r\t"));
+            var whiteSpace = new Many(new Any(" \n\r\t"));
 
             var value = new Choice(new Number(),
                                    new String(),
@@ -22,28 +22,29 @@ namespace problema_3
                                    new Text("false"),
                                    new Text("null"));
 
-            var element = new Sequence(white, value, white);
+            var element = new Sequence(whiteSpace, value, whiteSpace);
 
             var array = new Sequence(new Character('['),
-                        white,
-                        new List(element, new Character(',')),
-                        white,
-                        new Character(']'));
-
-            var member = new Sequence(white,
+                                     whiteSpace,
+                                     new List(element, new Character(',')),
+                                     whiteSpace,
+                                     new Character(']'));
+             
+            var member = new Sequence(whiteSpace,
                                       new String(),
-                                      white,
+                                      whiteSpace,
                                       new Character(':'),
                                       element);
 
             var Object = new Sequence(new Character('{'),
-                                      white,
+                                      whiteSpace,
                                       new List(member, new Character(',')),
-                                      white,
+                                      whiteSpace,
                                       new Character('}'));
 
             value.Add(array);
             value.Add(Object);
+
             pattern = element;
         }
 
