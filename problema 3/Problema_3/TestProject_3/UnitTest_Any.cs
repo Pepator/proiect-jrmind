@@ -13,7 +13,7 @@ namespace problema_3
         [Fact]
         public void Match_ValidateAnyClass_ShouldRetrunTrueAndRemainingTextIfConditionsAreMet()
         {
-            var e = new Problema_3.Any("eE");
+            var e = new Any("eE");
             var match = e.Match("ea");
             Assert.Equal((true, "a"), (match.Success(), match.RemainingText()));
         }
@@ -21,7 +21,7 @@ namespace problema_3
         [Fact]
         public void Match_ValidateAnyClass_ShouldRetrunFalseAndText()
         {
-            var e = new Problema_3.Any("eE");
+            var e = new Any("eE");
             var match = e.Match("aa");
             Assert.Equal((false, "aa"), (match.Success(), match.RemainingText()));
         }
@@ -29,7 +29,7 @@ namespace problema_3
         [Fact]
         public void Match_ValidateAnyClass_ShouldRetrunTrueAndRemainingTextIfConditionsAreMetForSignCharacters()
         {
-            var sign = new Problema_3.Any("-+");
+            var sign = new Any("-+");
             var match = sign.Match("+aa");
             Assert.Equal((true, "aa"), (match.Success(), match.RemainingText()));
         }
@@ -37,7 +37,7 @@ namespace problema_3
         [Fact]
         public void Match_ValidateAnyClass_ShouldRetrunfalseAndNull()
         {
-            var sign = new Problema_3.Any("-+");
+            var sign = new Any("-+");
             var match = sign.Match(null);
             Assert.Equal((false, null), (match.Success(), match.RemainingText()));
         }

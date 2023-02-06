@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Problema_3
+namespace problema_3
 {
     public class Many : IPattern
     {

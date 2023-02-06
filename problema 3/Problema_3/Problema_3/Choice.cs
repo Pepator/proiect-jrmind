@@ -29,5 +29,11 @@ namespace problema_3
 
             return new Match(false, text);
         }
+
+        public void Add(IPattern pattern)
+        {
+            Array.Resize(ref patterns, patterns.Length + 1);
+            patterns[^1] = pattern;
+        }
     }
 }
