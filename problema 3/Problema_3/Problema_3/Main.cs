@@ -13,6 +13,7 @@ namespace problema_3
             if (!(args.Length == 1))
             {
                 Console.WriteLine("Please inser ONE argument !");
+                return;
             }
             else
             {
