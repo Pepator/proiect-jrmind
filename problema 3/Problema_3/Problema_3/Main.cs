@@ -10,17 +10,16 @@ namespace problema_3
     {
         static void Main(string[] args)
         {
-            if (args.Length == 1)
+            if (!(args.Length == 1))
+            {
+                Console.WriteLine("Please inser ONE argument !");
+            }
+            else
             {
                 string text = File.ReadAllText(args[0]);
                 var value = new Value();
                 var match = value.Match(text);
                 Console.WriteLine((match.Success() && match.RemainingText() == ""));
-                
-            }
-            else
-            {
-                Console.WriteLine("Please insert ONE argument !");
             }
 
             Console.WriteLine("\nPress any key to exit.");
