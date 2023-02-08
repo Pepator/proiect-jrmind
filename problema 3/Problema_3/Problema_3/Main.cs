@@ -15,17 +15,15 @@ namespace problema_3
                 string text = File.ReadAllText(args[0]);
                 var value = new Value();
                 var match = value.Match(text);
-
-                if (match.Success() && match.RemainingText() == "")
-                {
-                    Console.WriteLine(true);
-                }
-                else
-                {
-                    Console.WriteLine(false);
-                }
+                Console.WriteLine((match.Success() && match.RemainingText() == ""));
+                
             }
-            Console.WriteLine("Press any key to exit.");
+            else
+            {
+                Console.WriteLine("Please insert ONE argument !");
+            }
+
+            Console.WriteLine("\nPress any key to exit.");
             Console.ReadKey();
         }
     }
