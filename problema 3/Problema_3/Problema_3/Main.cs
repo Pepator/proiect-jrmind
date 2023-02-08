@@ -15,13 +15,10 @@ namespace problema_3
                 Console.WriteLine("Please inser ONE argument !");
                 return;
             }
-            else
-            {
                 string text = File.ReadAllText(args[0]);
                 var value = new Value();
                 var match = value.Match(text);
                 Console.WriteLine((match.Success() && match.RemainingText() == ""));
-            }
         }
     }
 }
