@@ -21,9 +21,6 @@ namespace problema_3
                 var match = value.Match(text);
                 Console.WriteLine((match.Success() && match.RemainingText() == ""));
             }
-
-            Console.WriteLine("\nPress any key to exit.");
-            Console.ReadKey();
         }
     }
 }
