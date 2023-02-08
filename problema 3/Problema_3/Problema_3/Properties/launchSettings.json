@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Problema_3": {
+      "commandName": "Project",
+      "commandLineArgs": "\"D:\\github\\problema 3\\Problema_3\\Problema_3\\textdoc.txt\""
+    }
+  }
+}
