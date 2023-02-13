@@ -21,12 +21,12 @@ namespace ColectiiDeDate
 
         public int Count()
         {
-            return array.Count();
+            return array.Length;
         }
 
         public int Element(int index)
         {
-            return array.ElementAt(index);
+            return array[index];
         }
 
         public void SetElement(int index, int element)
@@ -36,7 +36,16 @@ namespace ColectiiDeDate
 
         public bool Contains(int element)
         {
-            return array.Contains(element);
+            foreach (int i in array)
+            {
+                if (i == element)
+                {
+                    return true;
+                }
+
+            }
+
+            return false;
         }
 
         public int IndexOf(int element)
@@ -46,13 +55,7 @@ namespace ColectiiDeDate
 
         public void Insert(int index, int element)
         {
-            for (int i = array.Length; i > index; i--)
-            {
-                array[i] = array[i - 1];
-            }
-
-            Array.Resize(ref array, array.Length + 1);
-
+            ShiftRight(index);
             array[index] = element;
         }
 
@@ -67,6 +70,21 @@ namespace ColectiiDeDate
         }
 
         public void RemoveAt(int index)
+        {
+            ShiftLeft(index);
+        }
+
+        private void ShiftRight(int index)
+        {
+            for (int i = array.Length; i > index; i--)
+            {
+                array[i] = array[i - 1];
+            }
+
+            Array.Resize(ref array, array.Length + 1);
+        }
+
+        private void ShiftLeft(int index)
         {
             for (int i = index; i < array.Length; i++)
             {
