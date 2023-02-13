@@ -56,6 +56,7 @@ namespace ColectiiDeDate
         public void Insert(int index, int element)
         {
             ShiftRight(index);
+            Array.Resize(ref array, array.Length + 1);
             array[index] = element;
         }
 
@@ -76,6 +77,7 @@ namespace ColectiiDeDate
         public void RemoveAt(int index)
         {
             ShiftLeft(index);
+            Array.Resize(ref array, array.Length - 1);
         }
 
         private void ShiftRight(int index)
@@ -84,8 +86,6 @@ namespace ColectiiDeDate
             {
                 array[i] = array[i - 1];
             }
-
-            Array.Resize(ref array, array.Length + 1);
         }
 
         private void ShiftLeft(int index)
@@ -94,8 +94,6 @@ namespace ColectiiDeDate
             {
                 array[i] = array[i + 1];
             }
-
-            Array.Resize(ref array, array.Length - 1);
         }
 
     }
