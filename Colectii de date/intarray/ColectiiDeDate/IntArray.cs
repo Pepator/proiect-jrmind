@@ -61,12 +61,16 @@ namespace ColectiiDeDate
 
         public void Clear()
         {
-            Array.Clear(array, 0, array.Length);
+            array = new int[0];
         }
 
         public void Remove(int element)
         {
-            RemoveAt(IndexOf(element));
+            if (IndexOf(element) != -1)
+            {
+                RemoveAt(IndexOf(element));
+            }
+            
         }
 
         public void RemoveAt(int index)
@@ -76,7 +80,7 @@ namespace ColectiiDeDate
 
         private void ShiftRight(int index)
         {
-            for (int i = array.Length; i > index; i--)
+            for (int i = array.Length - 1; i > index; i--)
             {
                 array[i] = array[i - 1];
             }
@@ -86,7 +90,7 @@ namespace ColectiiDeDate
 
         private void ShiftLeft(int index)
         {
-            for (int i = index; i < array.Length; i++)
+            for (int i = index; i < array.Length - 1; i++)
             {
                 array[i] = array[i + 1];
             }
