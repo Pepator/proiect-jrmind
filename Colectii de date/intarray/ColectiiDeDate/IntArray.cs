@@ -67,9 +67,10 @@ namespace ColectiiDeDate
 
         public void Remove(int element)
         {
-            if (IndexOf(element) != -1)
+            var indexOfElement = IndexOf(element);
+            if (indexOfElement != -1)
             {
-                RemoveAt(IndexOf(element));
+                RemoveAt(indexOfElement);
             }
             
         }
