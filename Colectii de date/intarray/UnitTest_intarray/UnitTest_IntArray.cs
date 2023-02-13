@@ -5,7 +5,6 @@ namespace ColectiiDeDate
         [Fact]
         public void Add_TestAddMethod_ShouldReturnRightNumberOfElementsInOrder()
         {
-            int[] array = {1, 2, 3};
             var testArray = new IntArray();
             testArray.Add(1);
             testArray.Add(2);
