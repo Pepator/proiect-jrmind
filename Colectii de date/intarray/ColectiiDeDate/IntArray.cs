@@ -7,7 +7,6 @@ namespace ColectiiDeDate
 {
     public class IntArray
     {
-        int count = 0;
         private int[] array;
 
 	public IntArray()
@@ -17,22 +16,15 @@ namespace ColectiiDeDate
 
         public void Add(int element)
         {
-            Insert(count, element);
+            Insert(Count, element);
         }
 
-        public int Count()
-        {
-            return count;
-        }
+        public int Count { get; private set; }
 
-        public int Element(int index)
+        public int this[int index]
         {
-            return array[index];
-        }
-
-        public void SetElement(int index, int element)
-        {
-            array.SetValue(element, index);
+            get => array[index];
+            set => array[index] = value;
         }
 
         public bool Contains(int element)
@@ -58,14 +50,14 @@ namespace ColectiiDeDate
         {
             CheckLenght();
             ShiftRight(index);
-            count++;
+            Count++;
             array[index] = element;
         }
 
         public void Clear()
         {
             array = new int[4];
-            count = 0;
+            Count = 0;
         }
 
         public void Remove(int element)
@@ -80,12 +72,12 @@ namespace ColectiiDeDate
         public void RemoveAt(int index)
         {
             ShiftLeft(index);
-            count--;
+            Count--;
         }
 
         private void ShiftRight(int index)
         {
-            for (int i = count - 1; i > index; i--)
+            for (int i = Count - 1; i > index; i--)
             {
                 array[i] = array[i - 1];
             }
@@ -93,7 +85,7 @@ namespace ColectiiDeDate
 
         private void ShiftLeft(int index)
         {
-            for (int i = index; i < count - 1; i++)
+            for (int i = index; i < Count - 1; i++)
             {
                 array[i] = array[i + 1];
             }
@@ -101,7 +93,7 @@ namespace ColectiiDeDate
 
         private void CheckLenght()
         {
-            if (count == array.Length)
+            if (Count == array.Length)
             {
                 const int two = 2;
                 Array.Resize(ref array, array.Length * two);

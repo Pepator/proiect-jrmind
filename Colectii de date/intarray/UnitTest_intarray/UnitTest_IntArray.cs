@@ -10,8 +10,8 @@ namespace ColectiiDeDate
             testArray.Add(2);
             testArray.Add(3);
 
-            Assert.Equal(3, testArray.Count());
-            Assert.Equal(2, testArray.Element(1));
+            Assert.Equal(3, testArray.Count);
+            Assert.Equal(2, testArray[1]);
         }
 
         [Fact]
@@ -23,7 +23,7 @@ namespace ColectiiDeDate
             testArray.Add(3);
             testArray.Add(1);
 
-            Assert.Equal(4, testArray.Count());
+            Assert.Equal(4, testArray.Count);
         }
 
         [Fact]
@@ -32,7 +32,7 @@ namespace ColectiiDeDate
             var testArray = new IntArray();
             testArray.Add(2);
 
-            Assert.Equal(2, testArray.Element(0));
+            Assert.Equal(2, testArray[0]);
         }
 
         [Fact]
@@ -40,9 +40,9 @@ namespace ColectiiDeDate
         {
             var testArray = new IntArray();
             testArray.Add(1);
-            testArray.SetElement(0, 100);
+            testArray[0] = 100;
 
-            Assert.Equal(100, testArray.Element(0));
+            Assert.Equal(100, testArray[0]);
         }
 
         [Fact]
@@ -50,7 +50,7 @@ namespace ColectiiDeDate
         {
             var testArray = new IntArray();
             testArray.Add(1);
-            testArray.SetElement(0, 100);
+            testArray[0] = 100;
 
             Assert.True(testArray.Contains(100));
             Assert.False(testArray.Contains(10));
@@ -61,7 +61,7 @@ namespace ColectiiDeDate
         {
             var testArray = new IntArray();
             testArray.Add(1);
-            testArray.SetElement(0, 100);
+            testArray[0] = 100;
 
             Assert.Equal(0, testArray.IndexOf(100));
             Assert.Equal(-1, testArray.IndexOf(10));
@@ -76,8 +76,8 @@ namespace ColectiiDeDate
             testArray.Add(3);
             testArray.Insert(1, 100);
 
-            Assert.Equal(4, testArray.Count());
-            Assert.Equal(100, testArray.Element(1));
+            Assert.Equal(4, testArray.Count);
+            Assert.Equal(100, testArray[1]);
         }
 
         [Fact]
@@ -88,7 +88,7 @@ namespace ColectiiDeDate
             testArray.Add(2);
             testArray.Clear();
 
-            Assert.Equal(0, testArray.Count());
+            Assert.Equal(0, testArray.Count);
         }
 
         [Fact]
@@ -99,8 +99,8 @@ namespace ColectiiDeDate
             testArray.Add(3);
             testArray.Remove(1);
 
-            Assert.Equal(1, testArray.Count());
-            Assert.Equal(3, testArray.Element(0));
+            Assert.Equal(1, testArray.Count);
+            Assert.Equal(3, testArray[0]);
         }
 
         [Fact]
@@ -111,8 +111,8 @@ namespace ColectiiDeDate
             testArray.Add(3);
             testArray.RemoveAt(1);
 
-            Assert.Equal(1, testArray.Count());
-            Assert.Equal(1, testArray.Element(0));
+            Assert.Equal(1, testArray.Count);
+            Assert.Equal(1, testArray[0]);
         }
     }
 }
