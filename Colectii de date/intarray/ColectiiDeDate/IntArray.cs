@@ -29,21 +29,12 @@ namespace ColectiiDeDate
 
         public bool Contains(int element)
         {
-            foreach (int i in array)
-            {
-                if (i == element)
-                {
-                    return true;
-                }
-
-            }
-
-            return false;
+            return Array.IndexOf(array, element, 0, Count) != -1;
         }
 
         public int IndexOf(int element)
         {
-            return Array.IndexOf(array, element);
+            return Array.IndexOf(array, element, 0 , Count);
         }
 
         public void Insert(int index, int element)
