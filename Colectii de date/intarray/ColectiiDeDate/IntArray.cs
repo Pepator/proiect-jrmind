@@ -29,7 +29,7 @@ namespace ColectiiDeDate
 
         public bool Contains(int element)
         {
-            return Array.IndexOf(array, element, 0, Count) != -1;
+            return IndexOf(element) != -1;
         }
 
         public int IndexOf(int element)
