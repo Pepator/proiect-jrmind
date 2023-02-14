@@ -7,21 +7,22 @@ namespace ColectiiDeDate
 {
     public class IntArray
     {
+        int count = 0;
         private int[] array;
 
 	public IntArray()
         {
-            array = new int[0];
+            array = new int[4];
         }
 
         public void Add(int element)
         {
-            Insert(array.Length, element);
+            Insert(count, element);
         }
 
         public int Count()
         {
-            return array.Length;
+            return count;
         }
 
         public int Element(int index)
@@ -55,14 +56,16 @@ namespace ColectiiDeDate
 
         public void Insert(int index, int element)
         {
+            CheckLenght();
             ShiftRight(index);
-            Array.Resize(ref array, array.Length + 1);
+            count++;
             array[index] = element;
         }
 
         public void Clear()
         {
-            array = new int[0];
+            array = new int[4];
+            count = 0;
         }
 
         public void Remove(int element)
@@ -72,18 +75,17 @@ namespace ColectiiDeDate
             {
                 RemoveAt(indexOfElement);
             }
-            
         }
 
         public void RemoveAt(int index)
         {
             ShiftLeft(index);
-            Array.Resize(ref array, array.Length - 1);
+            count--;
         }
 
         private void ShiftRight(int index)
         {
-            for (int i = array.Length - 1; i > index; i--)
+            for (int i = count - 1; i > index; i--)
             {
                 array[i] = array[i - 1];
             }
@@ -91,12 +93,20 @@ namespace ColectiiDeDate
 
         private void ShiftLeft(int index)
         {
-            for (int i = index; i < array.Length - 1; i++)
+            for (int i = index; i < count - 1; i++)
             {
                 array[i] = array[i + 1];
             }
         }
 
+        private void CheckLenght()
+        {
+            if (count == array.Length)
+            {
+                const int two = 2;
+                Array.Resize(ref array, array.Length * two);
+            }
+        }
     }
 }
 
