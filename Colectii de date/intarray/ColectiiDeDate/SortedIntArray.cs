@@ -8,17 +8,11 @@ namespace ColectiiDeDate
 {
     public class SortedIntArray : IntArray
     {
-        public SortedIntArray()
-            : base()
-        {
-        }
-
         public override int this[int index]
         {
-            get => base[index];
-            set 
-            { 
-                base[index] = value; 
+            set
+            {
+                base[index] = value;
                 SortArray();
             }
         }
@@ -37,17 +31,17 @@ namespace ColectiiDeDate
 
         private void SortArray()
         {
-            for (int i = Count - 1; i > 0; i--)
+            for (int i = 0; i < Count - 1; i++)
             {
-                if (base[i] < base[i - 1])
+                for (int j = i; j < Count - 1; j++)
                 {
-                    Swap(i, i - 1);
-                }
-                else
-                {
-                    return;
+                    if (base[j] > base[j + 1])
+                    {
+                        Swap(j, j + 1);
+                    }
                 }
             }
+
         }
 
         private void Swap(int firstIndex, int secondIndex)

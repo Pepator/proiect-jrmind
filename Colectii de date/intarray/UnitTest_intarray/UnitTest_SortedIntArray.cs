@@ -44,10 +44,10 @@ namespace ColectiiDeDate
         {
             var testArray = new SortedIntArray();
             testArray.Add(1);
-            testArray.Add(3);
-            testArray[0] = 4;
+            testArray.Add(10);
+            testArray[0] = 11;
 
-            Assert.Equal(4, testArray[1]);
+            Assert.Equal(11, testArray[1]);
         }
 
         [Fact]
@@ -76,13 +76,13 @@ namespace ColectiiDeDate
         public void Insert_TestSortedInsertMethod_ShouldreturnNewSizeAndCorrectElementInCorrectIndex()
         {
             var testArray = new SortedIntArray();
+            testArray.Add(0);
             testArray.Add(1);
             testArray.Add(2);
-            testArray.Add(4);
             testArray.Insert(1, 3);
 
             Assert.Equal(4, testArray.Count);
-            Assert.Equal(3, testArray[2]);
+            Assert.Equal(3, testArray[3]);
         }
 
         [Fact]
