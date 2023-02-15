@@ -14,14 +14,14 @@ namespace ColectiiDeDate
             array = new int[4];
         }
 
-        public void Add(int element)
+        public virtual void Add(int element)
         {
             Insert(Count, element);
         }
 
-        public int Count { get; private set; }
+        public int Count { get; protected set; }
 
-        public int this[int index]
+        public virtual int this[int index]
         {
             get => array[index];
             set => array[index] = value;
@@ -37,7 +37,7 @@ namespace ColectiiDeDate
             return Array.IndexOf(array, element, 0 , Count);
         }
 
-        public void Insert(int index, int element)
+        public virtual void Insert(int index, int element)
         {
             CheckLenght();
             ShiftRight(index);
