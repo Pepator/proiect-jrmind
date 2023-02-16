@@ -33,15 +33,20 @@ namespace ColectiiDeDate
         {
             for (int i = 0; i < Count - 1; i++)
             {
-                for (int j = i; j < Count - 1; j++)
+                bool needsSwap = false;
+                for (int j = 0; j < Count - 1 - i; j++)
                 {
                     if (base[j] > base[j + 1])
                     {
                         Swap(j, j + 1);
+                        needsSwap = true;
                     }
                 }
+                if (!needsSwap)
+                {
+                    break;
+                }
             }
-
         }
 
         private void Swap(int firstIndex, int secondIndex)

@@ -1,59 +1,52 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace ColectiiDeDate
 {
-    public class IntArray
+    public class ObjectArray
     {
-        private int[] array;
+        private object[] array;
 
-        public IntArray()
+        public ObjectArray()
         {
-            array = new int[4];
+            array = new object[4];
         }
 
-        public virtual void Add(int element)
-        {
-            Insert(Count, element);
-        }
+        public void Add(object obj) => Insert(Count, obj);
 
         public int Count { get; protected set; }
 
-        public virtual int this[int index]
+        public object this[int index]
         {
             get => array[index];
             set => array[index] = value;
         }
 
-        public bool Contains(int element)
-        {
-            return IndexOf(element) != -1;
-        }
+        public bool Contains(object obj) => IndexOf(obj) != -1;
 
-        public int IndexOf(int element)
-        {
-            return Array.IndexOf(array, element, 0, Count);
-        }
+        public int IndexOf(object obj) => Array.IndexOf(array, obj, 0, Count);
 
-        public virtual void Insert(int index, int element)
+        public void Insert(int index, object obj)
         {
             CheckLenght();
             ShiftRight(index);
             Count++;
-            array[index] = element;
+            array[index] = obj;
         }
 
         public void Clear()
         {
-            array = new int[4];
+            array = new object[4];
             Count = 0;
         }
 
-        public void Remove(int element)
+        public void Remove(object obj)
         {
-            var indexOfElement = IndexOf(element);
+            var indexOfElement = IndexOf(obj);
             if (indexOfElement != -1)
             {
                 RemoveAt(indexOfElement);
@@ -92,4 +85,3 @@ namespace ColectiiDeDate
         }
     }
 }
-
