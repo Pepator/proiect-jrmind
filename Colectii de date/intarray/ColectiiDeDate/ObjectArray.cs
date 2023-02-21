@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using System.Xml.Linq;
 
 namespace ColectiiDeDate
 {
-    public class ObjectArray
+    public class ObjectArray : IEnumerable
     {
         private object[] array;
 
@@ -82,6 +83,11 @@ namespace ColectiiDeDate
                 const int two = 2;
                 Array.Resize(ref array, array.Length * two);
             }
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            return new ObjectEnumerator(array);
         }
     }
 }

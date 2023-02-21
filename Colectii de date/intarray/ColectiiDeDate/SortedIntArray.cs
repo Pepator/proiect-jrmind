@@ -31,20 +31,16 @@ namespace ColectiiDeDate
 
         private void SortArray()
         {
-            for (int i = 0; i < Count - 1; i++)
+            bool swapDone = false;
+            for (int i = 0; i < Count - 1 && !swapDone; i++)
             {
-                bool needsSwap = false;
                 for (int j = 0; j < Count - 1 - i; j++)
                 {
                     if (base[j] > base[j + 1])
                     {
                         Swap(j, j + 1);
-                        needsSwap = true;
+                        swapDone = true;
                     }
-                }
-                if (!needsSwap)
-                {
-                    break;
                 }
             }
         }

@@ -19,5 +19,14 @@ namespace ColectiiDeDate
             Assert.Equal(4, testArray.Count);
             Assert.Equal("asd", testArray[2]);
         }
+
+        [Fact]
+        public void Add()
+        {
+            var testArray = new ObjectArray { 1, 2, "asd" };
+
+            Assert.Equal(3, testArray.Count);
+            Assert.Equal("asd", testArray[2]);
+        }
     }
 }
