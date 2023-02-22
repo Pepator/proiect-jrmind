@@ -9,10 +9,10 @@ namespace ColectiiDeDate
 {
     internal class ObjectEnumerator : IEnumerator
     {
-        public object[] obj;
+        public ObjectArray obj;
         int position = -1;
 
-        public  ObjectEnumerator(object[] list)
+        public  ObjectEnumerator(ObjectArray list)
         {
             obj = list;
         }
@@ -20,7 +20,7 @@ namespace ColectiiDeDate
         public bool MoveNext()
         {
             position++;
-            return (position < obj.Length);
+            return position < obj.Count;
         }
 
         public void Reset()
@@ -38,18 +38,7 @@ namespace ColectiiDeDate
         
         public object Current
         {
-            get
-            {
-                try
-                {
-                    return obj[position];
-                }
-                catch (IndexOutOfRangeException)
-                {
-                    throw new InvalidOperationException();
-                }
-            }
+            get => obj[position];
         }
-
     }
 }
