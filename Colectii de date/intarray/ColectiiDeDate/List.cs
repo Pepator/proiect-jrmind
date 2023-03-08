@@ -8,30 +8,30 @@ using System.Xml.Linq;
 
 namespace ColectiiDeDate
 {
-    public class ObjectArray : IEnumerable
+    public class List<T> : IEnumerable<T>
     {
-        private object[] array;
+        private T[] array;
 
-        public ObjectArray()
+        public List()
         {
-            array = new object[4];
+            array = new T[4];
         }
 
-        public void Add(object obj) => Insert(Count, obj);
+        public void Add(T obj) => Insert(Count, obj);
 
         public int Count { get; protected set; }
 
-        public object this[int index]
+        public T this[int index]
         {
             get => array[index];
             set => array[index] = value;
         }
 
-        public bool Contains(object obj) => IndexOf(obj) != -1;
+        public bool Contains(T obj) => IndexOf(obj) != -1;
 
-        public int IndexOf(object obj) => Array.IndexOf(array, obj, 0, Count);
+        public int IndexOf(T obj) => Array.IndexOf(array, obj, 0, Count);
 
-        public void Insert(int index, object obj)
+        public void Insert(int index, T obj)
         {
             CheckLenght();
             ShiftRight(index);
@@ -41,11 +41,11 @@ namespace ColectiiDeDate
 
         public void Clear()
         {
-            array = new object[4];
+            array = new T[4];
             Count = 0;
         }
 
-        public void Remove(object obj)
+        public void Remove(T obj)
         {
             var indexOfElement = IndexOf(obj);
             if (indexOfElement != -1)
@@ -85,9 +85,14 @@ namespace ColectiiDeDate
             }
         }
 
-        public IEnumerator GetEnumerator()
+        public IEnumerator<T> GetEnumerator()
         {
-            return new ObjectEnumerator(array);
+            return (IEnumerator<T>)array.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return array.GetEnumerator();
         }
     }
 }

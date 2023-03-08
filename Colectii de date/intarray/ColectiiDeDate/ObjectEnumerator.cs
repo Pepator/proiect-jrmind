@@ -9,10 +9,10 @@ namespace ColectiiDeDate
 {
     internal class ObjectEnumerator : IEnumerator
     {
-        public ObjectArray obj;
+        public List<int> obj;
         int position = -1;
 
-        public  ObjectEnumerator(ObjectArray list)
+        public  ObjectEnumerator(List<int> list)
         {
             obj = list;
         }
@@ -29,14 +29,6 @@ namespace ColectiiDeDate
         }
 
         object IEnumerator.Current
-        {
-            get
-            {
-                return Current;
-            }
-        }
-        
-        public object Current
         {
             get => obj[position];
         }
