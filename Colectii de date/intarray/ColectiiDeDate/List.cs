@@ -74,7 +74,7 @@ namespace ColectiiDeDate
             }
         }
 
-        private void CheckLenght()
+        private void CheckLength()
         {
             if (Count == array.Length)
             {
