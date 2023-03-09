@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace ColectiiDeDate
 {
@@ -87,12 +85,15 @@ namespace ColectiiDeDate
 
         public IEnumerator<T> GetEnumerator()
         {
-            return (IEnumerator<T>)array.GetEnumerator();
+            for (int i = 0; i < Count; i++)
+            {
+                yield return array[i];
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return array.GetEnumerator();
+            return GetEnumerator();
         }
     }
 }
