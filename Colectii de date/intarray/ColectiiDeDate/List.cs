@@ -15,11 +15,11 @@ namespace ColectiiDeDate
             array = new T[4];
         }
 
-        public void Add(T obj) => Insert(Count, obj);
+        public virtual void Add(T obj) => Insert(Count, obj);
 
         public int Count { get; protected set; }
 
-        public T this[int index]
+        public virtual T this[int index]
         {
             get => array[index];
             set => array[index] = value;
@@ -29,9 +29,9 @@ namespace ColectiiDeDate
 
         public int IndexOf(T obj) => Array.IndexOf(array, obj, 0, Count);
 
-        public void Insert(int index, T obj)
+        public virtual void Insert(int index, T obj)
         {
-            CheckLenght();
+            CheckLength();
             ShiftRight(index);
             Count++;
             array[index] = obj;
