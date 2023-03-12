@@ -11,8 +11,10 @@ namespace ColectiiDeDate
         {
             set
             {
-                base[index] = value;
-                SortArray();
+                if (ElementAt(index - 1, value).CompareTo(value) <= 0 && value.CompareTo(ElementAt(index, value)) <= 0)
+                {
+                    base[index] = value;
+                }
             }
         }
 
@@ -24,8 +26,15 @@ namespace ColectiiDeDate
 
         public override void Insert(int index, T element)
         {
-            base.Insert(index, element);
-            SortArray();
+            if (ElementAt(index - 1, element).CompareTo(element) <= 0 && element.CompareTo(ElementAt(index, element)) <= 0)
+            {
+                base.Insert(index, element);
+            }
+        }
+
+        private T ElementAt(int index, T defaultValue)
+        {
+            return index < 0 || index >= Count ? defaultValue : base[index];
         }
 
         private void SortArray()

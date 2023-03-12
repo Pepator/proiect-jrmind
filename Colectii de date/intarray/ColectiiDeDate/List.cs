@@ -15,7 +15,11 @@ namespace ColectiiDeDate
             array = new T[4];
         }
 
-        public virtual void Add(T obj) => Insert(Count, obj);
+        public virtual void Add(T obj)
+        {
+            CheckLength();
+            array[Count++] = obj;
+        }
 
         public int Count { get; protected set; }
 

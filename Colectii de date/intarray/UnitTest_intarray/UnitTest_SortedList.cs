@@ -11,7 +11,7 @@ namespace ColectiiDeDate
         [Fact]
         public void Add_TestSortedList_ShouldReturnRightNumberOfElementsInOrder()
         {
-            var testList = new SortedList<int> { 2, 4, 1, 3 };
+            var testList = new SortedList<int> { 4, 2, 1, 3 };
 
             Assert.Equal(4, testList.Count);
             Assert.Equal(4, testList[3]);
@@ -40,7 +40,7 @@ namespace ColectiiDeDate
             testList[0] = 100;
 
             Assert.Equal(6, testList.Count);
-            Assert.True(testList.Contains(100));
+            Assert.False(testList.Contains(100));
         }
 
         [Fact]
@@ -65,7 +65,7 @@ namespace ColectiiDeDate
         public void Insert_TestSortedList_ShouldReturnRightElementAndNumberOfElements()
         {
             var testList = new SortedList<int> { 2, 4, 1, 3, 5, 6 };
-            testList.Insert(0, 100);
+            testList.Insert(6, 100);
 
             Assert.Equal(7, testList.Count);
             Assert.Equal(100, testList[6]);
