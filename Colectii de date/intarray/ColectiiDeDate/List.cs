@@ -6,54 +6,59 @@ using System.Threading.Tasks;
 
 namespace ColectiiDeDate
 {
-    public class List<T> : IEnumerable<T>
+    public class List<T> : IList<T>
     {
-        private T[] array;
+        private T[] list;
 
         public List()
         {
-            array = new T[4];
+            list = new T[4];
         }
 
         public virtual void Add(T obj)
         {
             CheckLength();
-            array[Count++] = obj;
+            list[Count++] = obj;
         }
 
         public int Count { get; protected set; }
 
+        public bool IsReadOnly { get; }
+
         public virtual T this[int index]
         {
-            get => array[index];
-            set => array[index] = value;
+            get => list[index];
+            set => list[index] = value;
         }
 
         public bool Contains(T obj) => IndexOf(obj) != -1;
 
-        public int IndexOf(T obj) => Array.IndexOf(array, obj, 0, Count);
+        public int IndexOf(T obj) => Array.IndexOf(list, obj, 0, Count);
 
         public virtual void Insert(int index, T obj)
         {
             CheckLength();
             ShiftRight(index);
             Count++;
-            array[index] = obj;
+            list[index] = obj;
         }
 
         public void Clear()
         {
-            array = new T[4];
+            list = new T[4];
             Count = 0;
         }
 
-        public void Remove(T obj)
+        public bool Remove(T obj)
         {
-            var indexOfElement = IndexOf(obj);
-            if (indexOfElement != -1)
+            if (Contains(obj))
             {
-                RemoveAt(indexOfElement);
+                ShiftLeft(IndexOf(obj));
+                Count--;
+                return true;
             }
+
+            return false;
         }
 
         public void RemoveAt(int index)
@@ -66,7 +71,7 @@ namespace ColectiiDeDate
         {
             for (int i = Count - 1; i > index; i--)
             {
-                array[i] = array[i - 1];
+                list[i] = list[i - 1];
             }
         }
 
@@ -74,16 +79,16 @@ namespace ColectiiDeDate
         {
             for (int i = index; i < Count - 1; i++)
             {
-                array[i] = array[i + 1];
+                list[i] = list[i + 1];
             }
         }
 
         private void CheckLength()
         {
-            if (Count == array.Length)
+            if (Count == list.Length)
             {
                 const int two = 2;
-                Array.Resize(ref array, array.Length * two);
+                Array.Resize(ref list, list.Length * two);
             }
         }
 
@@ -91,13 +96,26 @@ namespace ColectiiDeDate
         {
             for (int i = 0; i < Count; i++)
             {
-                yield return array[i];
+                yield return list[i];
             }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
+        }
+
+        public void CopyTo(T[] array, int arrayIndex)
+        {
+            if (array == null)
+            {
+                return;
+            }
+
+            for (int i = 0; i < Count; i++)
+            {
+                array[i] = list[i + arrayIndex];
+            }
         }
     }
 }

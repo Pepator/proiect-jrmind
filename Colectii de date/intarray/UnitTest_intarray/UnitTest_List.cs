@@ -91,10 +91,11 @@ namespace ColectiiDeDate
         public void Remove_TestListClass_ShouldRemoveCorrectElement()
         {
             var testList = new List<int> { 1, 2, 3, 4, 5, 6 };
-            testList.Remove(3);
 
+            Assert.True(testList.Remove(3));
             Assert.Equal(5, testList.Count);
-            Assert.False(testList.Contains(3));
+            Assert.DoesNotContain(3, testList);
+
         }
 
         [Fact]
@@ -105,6 +106,17 @@ namespace ColectiiDeDate
 
             Assert.Equal(5, testList.Count);
             Assert.False(testList.Contains(4));
+        }
+
+        [Fact]
+        public void CopyTo_TestListClass_ShouldRemoveCorrectElement()
+        {
+            var testList = new List<int> { 1, 2, 3, 4, 5, 6 };
+            var array = new int[testList.Count];
+            testList.CopyTo(array, 1);
+
+            Assert.Equal(6, array.Length);
+            Assert.Equal(2, array[0]);
         }
     }
 }
