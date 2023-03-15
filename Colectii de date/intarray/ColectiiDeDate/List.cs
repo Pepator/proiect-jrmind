@@ -114,7 +114,7 @@ namespace ColectiiDeDate
 
             for (int i = 0; i < Count; i++)
             {
-                array[i] = list[i + arrayIndex];
+                array[i + arrayIndex] = list[i];
             }
         }
     }

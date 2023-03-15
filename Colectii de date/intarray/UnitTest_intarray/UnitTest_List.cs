@@ -112,11 +112,11 @@ namespace ColectiiDeDate
         public void CopyTo_TestListClass_ShouldRemoveCorrectElement()
         {
             var testList = new List<int> { 1, 2, 3, 4, 5, 6 };
-            var array = new int[testList.Count];
+            var array = new int[7];
             testList.CopyTo(array, 1);
 
-            Assert.Equal(6, array.Length);
-            Assert.Equal(2, array[0]);
+            Assert.Equal(1, array[1]);
+            Assert.Equal(6, array[6]);
         }
     }
 }
