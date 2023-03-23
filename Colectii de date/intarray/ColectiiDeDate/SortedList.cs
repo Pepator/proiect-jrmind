@@ -46,22 +46,18 @@ namespace ColectiiDeDate
                 {
                     if (base[j].CompareTo(base[j + 1]) > 0)
                     {
-                        T a = base[j];
-                        T b = base[j + 1];
-                        Swap(ref a, ref b);
-                        base[j] = a;
-                        base[j + 1] = b;
+                        Swap(j, j + 1);
                         swapDone = true;
                     }
                 }
             }
         }
 
-        private void Swap<T>(ref T a, ref T b)
+        private void Swap(int firstIndex, int secondIndex)
         {
-            T temp = a;
-            a = b;
-            b = temp;
+            T temp = base[firstIndex];
+            base[firstIndex] = base[secondIndex];
+            base[secondIndex] = temp;
         }
     }
 }
