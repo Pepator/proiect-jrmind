@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace ColectiiDeDate
 {
@@ -64,10 +65,10 @@ namespace ColectiiDeDate
 
         public bool Remove(T obj)
         {
-            if (Contains(obj))
+            var indexOfElement = IndexOf(obj);
+            if (indexOfElement != -1)
             {
-                ShiftLeft(IndexOf(obj));
-                Count--;
+                RemoveAt(indexOfElement);
                 return true;
             }
 
