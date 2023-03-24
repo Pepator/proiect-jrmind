@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,6 +9,7 @@ namespace ColectiiDeDate
 {
     public class List<T> : IList<T>
     {
+        private readonly string errorMessageArgumentOutOfRangeException = "Index should be non-negative and equal or less than the size of the list.";
         private T[] list;
 
         public List()
@@ -27,8 +29,24 @@ namespace ColectiiDeDate
 
         public virtual T this[int index]
         {
-            get => list[index];
-            set => list[index] = value;
+            get
+            {
+                if (index < 0 || index > Count)
+                {
+                    throw new ArgumentOutOfRangeException(Convert.ToString(index), errorMessageArgumentOutOfRangeException);
+                }
+
+                return list[index];
+            }
+            set
+            {
+                if(index < 0 || index > Count)
+                {
+                    throw new ArgumentOutOfRangeException(Convert.ToString(index), errorMessageArgumentOutOfRangeException);
+                }
+
+                list[index] = value;
+            }
         }
 
         public bool Contains(T obj) => IndexOf(obj) != -1;
@@ -37,6 +55,10 @@ namespace ColectiiDeDate
 
         public virtual void Insert(int index, T obj)
         {
+            if (index < 0 || index > Count)
+            {
+                throw new ArgumentOutOfRangeException(Convert.ToString(index), errorMessageArgumentOutOfRangeException);
+            }
             CheckLength();
             ShiftRight(index);
             Count++;
@@ -63,6 +85,10 @@ namespace ColectiiDeDate
 
         public void RemoveAt(int index)
         {
+            if (index < 0 || index > Count)
+            {
+                throw new ArgumentOutOfRangeException(Convert.ToString(index), errorMessageArgumentOutOfRangeException);
+            }
             ShiftLeft(index);
             Count--;
         }
@@ -109,7 +135,17 @@ namespace ColectiiDeDate
         {
             if (array == null)
             {
-                return;
+                throw new ArgumentNullException(Convert.ToString(arrayIndex), "Array is null");
+            }
+
+            if (arrayIndex < 0)
+            {
+                throw new ArgumentOutOfRangeException(Convert.ToString(arrayIndex), "Index out of range. Must be positive.");
+            }
+
+            if (array.Length - arrayIndex < Count)
+            {
+                throw new ArgumentException("The number of elements to copy is greater than the available space in the array.");
             }
 
             for (int i = 0; i < Count; i++)
