@@ -31,19 +31,13 @@ namespace ColectiiDeDate
         {
             get
             {
-                if (index < 0 || index > Count)
-                {
-                    throw new ArgumentOutOfRangeException(Convert.ToString(index), errorMessageArgumentOutOfRangeException);
-                }
+                CheckArgumentOutOfRangeExeption(index);
 
                 return list[index];
             }
             set
             {
-                if(index < 0 || index > Count)
-                {
-                    throw new ArgumentOutOfRangeException(Convert.ToString(index), errorMessageArgumentOutOfRangeException);
-                }
+                CheckArgumentOutOfRangeExeption(index);
 
                 list[index] = value;
             }
@@ -55,10 +49,7 @@ namespace ColectiiDeDate
 
         public virtual void Insert(int index, T obj)
         {
-            if (index < 0 || index > Count)
-            {
-                throw new ArgumentOutOfRangeException(Convert.ToString(index), errorMessageArgumentOutOfRangeException);
-            }
+            CheckArgumentOutOfRangeExeption(index);
             CheckLength();
             ShiftRight(index);
             Count++;
@@ -85,10 +76,7 @@ namespace ColectiiDeDate
 
         public void RemoveAt(int index)
         {
-            if (index < 0 || index > Count)
-            {
-                throw new ArgumentOutOfRangeException(Convert.ToString(index), errorMessageArgumentOutOfRangeException);
-            }
+            CheckArgumentOutOfRangeExeption(index);
             ShiftLeft(index);
             Count--;
         }
@@ -151,6 +139,14 @@ namespace ColectiiDeDate
             for (int i = 0; i < Count; i++)
             {
                 array[i + arrayIndex] = list[i];
+            }
+        }
+
+        private void CheckArgumentOutOfRangeExeption(int index)
+        {
+            if (index < 0 || index > Count)
+            {
+                throw new ArgumentOutOfRangeException(Convert.ToString(index), errorMessageArgumentOutOfRangeException);
             }
         }
     }
