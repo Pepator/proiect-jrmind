@@ -6,20 +6,21 @@ using System.Threading.Tasks;
 
 namespace ColectiiDeDate
 {
-    public class Stream
+    public class StreamClass
     {
-        public static void Write(string text)
+        public static void Write(Stream stream, string text)
         {
-            StreamWriter writer = new StreamWriter(@"D:\github\Colectii de date\intarray\ColectiiDeDate\Text.txt");
+            StreamWriter writer = new StreamWriter(stream);
             writer.Write(text);
             writer.Close();
         }
 
-        public static void Read(string path)
+        public static string Read(Stream stream)
         {
-            StreamReader reader = new StreamReader(path);
-            reader.ReadToEnd();
+            StreamReader reader = new StreamReader(stream);
+            var text = reader.ReadToEnd();
             reader.Close();
+            return text;
         }
     }
 }
